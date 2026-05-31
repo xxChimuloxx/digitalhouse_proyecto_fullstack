@@ -7,8 +7,17 @@
     <nav class="nav-actions">
       <a class="<%= active === 'home' ? 'active' : '' %>" href="/">Home</a>
       <a class="<%= active === 'products' ? 'active' : '' %>" href="/products">Productos</a>
-      <a class="<%= active === 'login' ? 'active' : '' %>" href="/users/login">Login</a>
       <a class="<%= active === 'cart' ? 'active' : '' %>" href="/cart">Carrito</a>
+
+      <% if (userLogged) { %>
+        <a class="<%= active === 'profile' ? 'active' : '' %>" href="/users/profile">Hola, <%= userLogged.firstName %></a>
+        <form class="logout-form" action="/users/logout" method="POST">
+          <button type="submit">Salir</button>
+        </form>
+      <% } else { %>
+        <a class="<%= active === 'register' ? 'active' : '' %>" href="/users/register">Registro</a>
+        <a class="<%= active === 'login' ? 'active' : '' %>" href="/users/login">Login</a>
+      <% } %>
     </nav>
   </div>
 </header>

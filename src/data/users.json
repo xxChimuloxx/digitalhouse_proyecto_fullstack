@@ -4,8 +4,8 @@
     "firstName": "Lucía",
     "lastName": "Gómez",
     "email": "lucia.gomez@example.com",
-    "password": "123456",
-    "category": "cliente",
+    "password": "$2a$10$cmIZtNr8SvMO398tBA1bZuS1VCvq1KdIrf87UHguPyHxrtGQa88wu",
+    "category": "customer",
     "image": "default-user.png"
   },
   {
@@ -13,8 +13,8 @@
     "firstName": "Martín",
     "lastName": "Pérez",
     "email": "martin.perez@example.com",
-    "password": "123456",
-    "category": "cliente",
+    "password": "$2a$10$ao5XGoSRM7bv4fjSEWTdLuIFJrN.vmC2qGOTYs26vpSTADguWwlAS",
+    "category": "customer",
     "image": "default-user.png"
   },
   {
@@ -22,8 +22,8 @@
     "firstName": "Admin",
     "lastName": "PixelForge",
     "email": "admin@pixelforge.com",
-    "password": "admin123",
+    "password": "$2a$10$xdZuKZs8W.xgLiA6hVh.p.31541YYbyIpv60.lA9com.alyRsMtvy",
     "category": "admin",
-    "image": "admin-user.png"
+    "image": "default-user.png"
   }
 ]

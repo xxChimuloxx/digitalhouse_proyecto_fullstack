@@ -1,0 +1,25 @@
+<%- include('../partials/head') %>
+<body>
+  <%- include('../partials/header') %>
+
+  <main class="container profile-page">
+    <section class="profile-card">
+      <div class="profile-avatar">
+        <img src="/images/users/<%= user.image %>" alt="Imagen de perfil de <%= user.firstName %>">
+      </div>
+      <div>
+        <p class="eyebrow">Mi perfil</p>
+        <h1><%= user.firstName %> <%= user.lastName %></h1>
+        <p><strong>Email:</strong> <%= user.email %></p>
+        <p><strong>Categoría:</strong> <%= user.category %></p>
+        <p class="muted">Desde esta sección el usuario podrá consultar sus datos, historial de compras y preferencias.</p>
+        <form action="/users/logout" method="POST">
+          <button class="btn-secondary" type="submit">Cerrar sesión</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../partials/footer') %>
+</body>
+</html>

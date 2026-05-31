@@ -1,27 +1,57 @@
-# PixelForge Store
+# PixelForge Store - Sprint 5
 
-PixelForge Store es un e-commerce orientado a la venta de productos gamer, accesorios tecnológicos y componentes para setup. El sitio ofrece productos como teclados mecánicos, mouses gamer, auriculares, monitores, sillas gamer, notebooks, componentes de PC y accesorios para streaming.
+PixelForge Store es un e-commerce orientado a productos gamer, accesorios tecnológicos y componentes para setup.
 
-## Público objetivo
+## Estado del proyecto
 
-El sitio está dirigido a jóvenes y adultos interesados en gaming, tecnología, streaming, estudio, home office y armado de setups personalizados.
+Sprint 5 implementado sobre la base del Sprint 4. El sitio ya cuenta con vistas dinámicas en EJS, CRUD de productos con JSON y flujo funcional de usuarios.
 
-## Sprint 4
+## Funcionalidades principales
 
-En este sprint el proyecto incorpora persistencia básica mediante archivos JSON y administración completa de productos.
-
-### Funcionalidades incorporadas
-
-- Lectura dinámica de productos desde `src/data/products.json`.
-- Archivo `src/data/users.json` con usuarios mockeados.
+- Home dinámica.
 - Listado de productos.
 - Detalle de producto.
-- Creación de productos.
-- Edición de productos.
-- Eliminación de productos.
-- Uso de rutas HTTP `GET`, `POST`, `PUT` y `DELETE` mediante `method-override`.
+- Carrito visual.
+- CRUD de productos con JSON.
+- Registro funcional de usuarios.
+- Subida de imagen de perfil con Multer.
+- Encriptación de contraseña con bcrypt.js.
+- Login y logout con sesiones.
+- Función opcional de recordar usuario con cookies.
+- Página de perfil protegida.
+- Middlewares para rutas de huéspedes y usuarios logueados.
 
-## Instalación y ejecución
+## Estructura principal
+
+```txt
+src/
+├── app.js
+├── controllers/
+│   ├── mainController.js
+│   ├── productController.js
+│   └── userController.js
+├── data/
+│   ├── products.json
+│   └── users.json
+├── middlewares/
+│   ├── authMiddleware.js
+│   ├── guestMiddleware.js
+│   ├── uploadUserImage.js
+│   └── userLoggedMiddleware.js
+├── models/
+│   ├── productModel.js
+│   └── userModel.js
+├── routes/
+│   ├── mainRoutes.js
+│   ├── productRoutes.js
+│   └── userRoutes.js
+└── views/
+    ├── partials/
+    ├── products/
+    └── users/
+```
+
+## Instalación
 
 ```bash
 npm install
@@ -34,40 +64,31 @@ Luego abrir:
 http://localhost:3000
 ```
 
-## Rutas principales
+## Rutas de usuarios
 
 ```txt
-/                       Home
-/products               Listado de productos
-/products/create        Formulario de creación
-/products/:id           Detalle de producto
-/products/:id/edit      Formulario de edición
-/cart                   Carrito
-/users/register         Registro
-/users/login            Login
+GET     /users/register
+POST    /users/register
+GET     /users/login
+POST    /users/login
+GET     /users/profile
+POST    /users/logout
 ```
 
-## Estructura del proyecto
+## Usuarios de prueba
 
 ```txt
-DPFS_sebastian_fuentes/
-├── package.json
-├── README.md
-├── retro.md
-├── public/
-│   └── css/
-└── src/
-    ├── app.js
-    ├── controllers/
-    ├── data/
-    │   ├── products.json
-    │   └── users.json
-    ├── models/
-    │   └── productModel.js
-    ├── routes/
-    └── views/
+Email: lucia.gomez@example.com
+Password: 123456
+
+Email: admin@pixelforge.com
+Password: admin123
 ```
 
 ## Tablero de trabajo
 
-Pendiente de incorporar enlace al tablero utilizado para el seguimiento del sprint.
+Agregar aquí el enlace al tablero utilizado para organizar el sprint.
+
+```txt
+Link del tablero: pendiente de carga
+```

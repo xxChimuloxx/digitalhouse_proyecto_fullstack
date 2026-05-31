@@ -1,31 +1,38 @@
-<!DOCTYPE html>
-<html lang="es">
 <%- include('../partials/head') %>
 <body>
   <%- include('../partials/header') %>
 
-  <main class="section auth-section">
-    <div class="container narrow">
-      <section class="form-card">
-        <h1>Iniciar sesión</h1>
-        <p class="muted">Ingresá para consultar tu perfil e historial de compras.</p>
-        <form>
-          <label>Email
-            <input type="email" placeholder="ejemplo@email.com">
-          </label>
-          <label>Contraseña
-            <input type="password" placeholder="********">
-          </label>
-          <label class="checkbox-line">
-            <input type="checkbox"> Recordarme
-          </label>
-          <p class="form-error">Ejemplo de error visual: usuario o contraseña incorrectos.</p>
-          <button class="btn btn-secondary" type="button">Ingresar</button>
-        </form>
-        <p class="auth-link"><a href="#">¿Olvidaste tu contraseña?</a></p>
-        <p class="auth-link">¿No tenés cuenta? <a href="/users/register">Crear cuenta</a></p>
-      </section>
-    </div>
+  <main class="auth-page">
+    <section class="auth-card">
+      <h1>Iniciar sesión</h1>
+      <p>Ingresá con tu usuario para acceder a tu perfil e historial de compras.</p>
+
+      <% if (errors.login) { %>
+        <div class="alert-error"><%= errors.login %></div>
+      <% } %>
+
+      <form action="/users/login" method="POST" class="form-grid">
+        <label>
+          Email
+          <input type="email" name="email" value="<%= oldData.email || '' %>" placeholder="usuario@email.com">
+        </label>
+
+        <label>
+          Contraseña
+          <input type="password" name="password" placeholder="Tu contraseña">
+        </label>
+
+        <label class="checkbox-line">
+          <input type="checkbox" name="remember">
+          Recordarme en este equipo
+        </label>
+
+        <button class="btn-primary" type="submit">Ingresar</button>
+      </form>
+
+      <p class="auth-link"><a href="#">¿Olvidaste tu contraseña?</a></p>
+      <p class="auth-link">¿No tenés cuenta? <a href="/users/register">Crear cuenta</a></p>
+    </section>
   </main>
 
   <%- include('../partials/footer') %>

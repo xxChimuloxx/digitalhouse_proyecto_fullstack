@@ -60,3 +60,25 @@
 
 ### Dejar de hacer
 - Simular formularios cuando ya se puede implementar una acción real.
+
+## Sprint 5 - Retrospectiva del Sprint 4
+
+### Comenzar a hacer
+- Probar cada ruta nueva apenas se implementa, especialmente las acciones POST, PUT y DELETE.
+- Documentar usuarios de prueba y credenciales válidas para facilitar la corrección.
+
+### Hacer más
+- Mantener separados modelos, controladores, rutas y vistas para que el código siga siendo claro.
+- Reutilizar middlewares para no repetir validaciones de acceso en cada controlador.
+
+### Continuar haciendo
+- Trabajar con entregables pequeños y verificables por sprint.
+- Mantener la estructura del proyecto alineada con la consigna.
+
+### Hacer menos
+- Evitar cambios visuales grandes cuando el objetivo principal del sprint es funcional.
+- Reducir código duplicado en formularios y navegación.
+
+### Dejar de hacer
+- No dejar rutas sin probar antes de cerrar el sprint.
+- No guardar contraseñas en texto plano dentro del archivo JSON.

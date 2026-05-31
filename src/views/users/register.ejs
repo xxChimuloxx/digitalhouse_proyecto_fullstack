@@ -1,36 +1,55 @@
-<!DOCTYPE html>
-<html lang="es">
 <%- include('../partials/head') %>
 <body>
   <%- include('../partials/header') %>
 
-  <main class="section auth-section">
-    <div class="container narrow">
-      <section class="form-card">
-        <h1>Registro</h1>
-        <p class="muted">Creá tu cuenta para acceder a futuras compras e historial.</p>
-        <form>
-          <label>Nombre
-            <input type="text" placeholder="Sebastián">
-          </label>
-          <label>Apellido
-            <input type="text" placeholder="Fuentes">
-          </label>
-          <label>Email
-            <input type="email" placeholder="ejemplo@email.com">
-          </label>
-          <label>Contraseña
-            <input type="password" placeholder="********">
-          </label>
-          <label>Confirmar contraseña
-            <input type="password" placeholder="********">
-          </label>
-          <p class="form-error">Ejemplo de error visual: las contraseñas no coinciden.</p>
-          <button class="btn btn-secondary" type="button">Crear cuenta</button>
-        </form>
-        <p class="auth-link">¿Ya tenés cuenta? <a href="/users/login">Iniciar sesión</a></p>
-      </section>
-    </div>
+  <main class="auth-page">
+    <section class="auth-card">
+      <h1>Crear cuenta</h1>
+      <p>Registrate para comprar más rápido, guardar favoritos y acceder a tu historial.</p>
+
+      <form action="/users/register" method="POST" enctype="multipart/form-data" class="form-grid">
+        <label>
+          Nombre
+          <input type="text" name="firstName" value="<%= oldData.firstName || '' %>" placeholder="Sebastián">
+          <% if (errors.firstName) { %><span class="form-error"><%= errors.firstName %></span><% } %>
+        </label>
+
+        <label>
+          Apellido
+          <input type="text" name="lastName" value="<%= oldData.lastName || '' %>" placeholder="Fuentes">
+          <% if (errors.lastName) { %><span class="form-error"><%= errors.lastName %></span><% } %>
+        </label>
+
+        <label>
+          Email
+          <input type="email" name="email" value="<%= oldData.email || '' %>" placeholder="usuario@email.com">
+          <% if (errors.email) { %><span class="form-error"><%= errors.email %></span><% } %>
+        </label>
+
+        <label>
+          Contraseña
+          <input type="password" name="password" placeholder="Mínimo 6 caracteres">
+          <% if (errors.password) { %><span class="form-error"><%= errors.password %></span><% } %>
+        </label>
+
+        <label>
+          Categoría
+          <select name="category">
+            <option value="customer">Cliente</option>
+            <option value="admin">Administrador</option>
+          </select>
+        </label>
+
+        <label>
+          Imagen de perfil
+          <input type="file" name="image" accept="image/*">
+        </label>
+
+        <button class="btn-primary" type="submit">Crear cuenta</button>
+      </form>
+
+      <p class="auth-link">¿Ya tenés cuenta? <a href="/users/login">Iniciar sesión</a></p>
+    </section>
   </main>
 
   <%- include('../partials/footer') %>
