@@ -1,84 +1,29 @@
-# Retrospectiva del proyecto
+# Retrospectiva - Sprint 6
 
-## Sprint 1
+## Comenzar a hacer
 
-### Comenzar a hacer
-- Organizar desde el inicio las carpetas del proyecto.
-- Definir nombres claros para las páginas y recursos.
-- Documentar las decisiones principales en el README.
+- Documentar con mayor precisión los cambios estructurales importantes, especialmente cuando se reemplaza una fuente de datos por otra.
+- Probar las rutas principales después de cada cambio de modelo o relación.
+- Mantener una copia clara de los scripts SQL para facilitar la instalación del proyecto en otro equipo.
 
-### Hacer más
-- Usar los wireframes como guía antes de escribir código.
-- Revisar que cada entregable pedido por la consigna esté cubierto.
+## Hacer más
 
-### Continuar haciendo
-- Mantener una temática coherente para todo el sitio.
-- Trabajar con una estética simple, clara y fácil de navegar.
+- Separar responsabilidades entre rutas, controladores, modelos y vistas.
+- Utilizar nombres consistentes en inglés para tablas, campos y modelos, facilitando el trabajo con Sequelize.
+- Revisar las relaciones antes de programar los controladores para evitar errores posteriores.
 
-### Hacer menos
-- Evitar agregar elementos visuales que no aporten al objetivo principal.
+## Continuar haciendo
 
-### Dejar de hacer
-- Postergar la documentación hasta el final.
+- Mantener una estructura ordenada de carpetas.
+- Trabajar por sprint, dejando entregables claros y verificables.
+- Reutilizar vistas parciales para evitar repetición de código.
 
-## Sprint 2
+## Hacer menos
 
-### Comenzar a hacer
-- Separar mejor las partes repetidas del sitio para evitar duplicar código.
-- Revisar rutas y enlaces internos después de crear cada página.
+- Evitar resolver cambios grandes directamente sobre las vistas sin revisar antes el impacto en rutas y controladores.
+- Evitar depender de datos hardcodeados cuando ya existe una fuente de datos más robusta.
 
-### Hacer más
-- Probar la navegación completa del sitio antes de subir cambios.
-- Mantener criterios visuales consistentes entre todas las pantallas.
+## Dejar de hacer
 
-### Continuar haciendo
-- Usar una estructura clara de carpetas.
-- Priorizar diseño responsive y facilidad de uso.
-
-### Hacer menos
-- Repetir manualmente bloques como header, footer y tarjetas de productos.
-
-### Dejar de hacer
-- Dejar páginas aisladas sin conexión con el resto del sitio.
-
-## Sprint 3
-
-### Comenzar a hacer
-- Trabajar con datos externos en JSON para preparar el paso posterior hacia base de datos.
-- Implementar rutas HTTP diferenciadas para cada acción del CRUD.
-
-### Hacer más
-- Reutilizar controladores y modelos para ordenar la lógica del proyecto.
-- Probar creación, edición y eliminación de productos después de cada cambio.
-
-### Continuar haciendo
-- Mantener EJS y parciales para evitar duplicación de código.
-- Documentar rutas principales y pasos de ejecución.
-
-### Hacer menos
-- Dejar datos escritos directamente en los controladores o vistas.
-
-### Dejar de hacer
-- Simular formularios cuando ya se puede implementar una acción real.
-
-## Sprint 5 - Retrospectiva del Sprint 4
-
-### Comenzar a hacer
-- Probar cada ruta nueva apenas se implementa, especialmente las acciones POST, PUT y DELETE.
-- Documentar usuarios de prueba y credenciales válidas para facilitar la corrección.
-
-### Hacer más
-- Mantener separados modelos, controladores, rutas y vistas para que el código siga siendo claro.
-- Reutilizar middlewares para no repetir validaciones de acceso en cada controlador.
-
-### Continuar haciendo
-- Trabajar con entregables pequeños y verificables por sprint.
-- Mantener la estructura del proyecto alineada con la consigna.
-
-### Hacer menos
-- Evitar cambios visuales grandes cuando el objetivo principal del sprint es funcional.
-- Reducir código duplicado en formularios y navegación.
-
-### Dejar de hacer
-- No dejar rutas sin probar antes de cerrar el sprint.
-- No guardar contraseñas en texto plano dentro del archivo JSON.
+- Dejar de usar JSON como fuente principal de persistencia para productos y usuarios.
+- Dejar de duplicar lógica de acceso a datos en distintos controladores.

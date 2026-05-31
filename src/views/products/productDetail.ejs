@@ -8,16 +8,16 @@
     <div class="container detail-layout">
       <div class="detail-img"><%= product.image %></div>
       <section class="panel">
-        <p class="muted">Inicio / Productos / <%= product.category %></p>
+        <p class="muted">Inicio / Productos / <%= product.category ? product.category.name : 'Sin categoría' %></p>
         <h1><%= product.name %></h1>
-        <p class="price">$<%= product.price.toLocaleString('es-AR') %></p>
+        <p class="price">$<%= Number(product.price).toLocaleString('es-AR') %></p>
         <p><%= product.description %></p>
 
         <ul class="features">
-          <li>Categoría: <%= product.category %></li>
-          <li>Colores: <%= product.colors && product.colors.length ? product.colors.join(', ') : 'Sin especificar' %></li>
-          <li>Garantía oficial</li>
-          <li>Entrega a domicilio o retiro en sucursal</li>
+          <li>Categoría: <%= product.category ? product.category.name : 'Sin categoría' %></li>
+          <li>Marca: <%= product.brand ? product.brand.name : 'Sin marca' %></li>
+          <li>Colores: <%= product.colors && product.colors.length ? product.colors.map(color => color.name).join(', ') : 'Sin especificar' %></li>
+          <li>Producto destacado: <%= product.featured ? 'Sí' : 'No' %></li>
         </ul>
 
         <div class="detail-actions">

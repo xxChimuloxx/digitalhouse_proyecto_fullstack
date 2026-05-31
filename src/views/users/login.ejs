@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="es">
 <%- include('../partials/head') %>
 <body>
   <%- include('../partials/header') %>
@@ -7,26 +9,21 @@
       <h1>Iniciar sesión</h1>
       <p>Ingresá con tu usuario para acceder a tu perfil e historial de compras.</p>
 
-      <% if (errors.login) { %>
-        <div class="alert-error"><%= errors.login %></div>
+      <% if (error) { %>
+        <div class="alert-error"><%= error %></div>
       <% } %>
 
       <form action="/users/login" method="POST" class="form-grid">
-        <label>
-          Email
-          <input type="email" name="email" value="<%= oldData.email || '' %>" placeholder="usuario@email.com">
+        <label>Email
+          <input type="email" name="email" placeholder="usuario@email.com" required>
         </label>
-
-        <label>
-          Contraseña
-          <input type="password" name="password" placeholder="Tu contraseña">
+        <label>Contraseña
+          <input type="password" name="password" placeholder="Tu contraseña" required>
         </label>
-
         <label class="checkbox-line">
           <input type="checkbox" name="remember">
           Recordarme en este equipo
         </label>
-
         <button class="btn-primary" type="submit">Ingresar</button>
       </form>
 

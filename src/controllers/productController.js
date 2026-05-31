@@ -1,24 +1,51 @@
-const productModel = require('../models/productModel');
+const { Op } = require('sequelize');
+const { Product, Category, Brand, Color } = require('../database/models');
+
+const includes = [
+  { model: Category, as: 'category' },
+  { model: Brand, as: 'brand' },
+  { model: Color, as: 'colors' }
+];
+
+const getFormData = async () => {
+  const [categories, brands, colors] = await Promise.all([
+    Category.findAll({ order: [['name', 'ASC']] }),
+    Brand.findAll({ order: [['name', 'ASC']] }),
+    Color.findAll({ order: [['name', 'ASC']] })
+  ]);
+
+  return { categories, brands, colors };
+};
 
 const productController = {
-  list: (req, res) => {
-    const products = productModel.findAll();
+  list: async (req, res) => {
+    const search = req.query.search || '';
+    const where = search ? {
+      [Op.or]: [
+        { name: { [Op.like]: `%${search}%` } },
+        { description: { [Op.like]: `%${search}%` } }
+      ]
+    } : {};
+
+    const products = await Product.findAll({
+      where,
+      include: includes,
+      order: [['id', 'DESC']]
+    });
 
     res.render('products/productList', {
       title: 'Listado de productos',
       active: 'products',
-      products
+      products,
+      search
     });
   },
 
-  detail: (req, res) => {
-    const product = productModel.findById(req.params.id);
+  detail: async (req, res) => {
+    const product = await Product.findByPk(req.params.id, { include: includes });
 
     if (!product) {
-      return res.status(404).render('notFound', {
-        title: 'Producto no encontrado',
-        active: 'products'
-      });
+      return res.status(404).render('notFound', { title: 'Producto no encontrado', active: 'products' });
     }
 
     res.render('products/productDetail', {
@@ -28,42 +55,80 @@ const productController = {
     });
   },
 
-  create: (req, res) => {
+  create: async (req, res) => {
+    const formData = await getFormData();
     res.render('products/productCreate', {
       title: 'Crear producto',
-      active: 'admin'
+      active: 'admin',
+      product: null,
+      ...formData
     });
   },
 
-  store: (req, res) => {
-    const newProduct = productModel.create(req.body);
-    res.redirect(`/products/${newProduct.id}`);
+  store: async (req, res) => {
+    const product = await Product.create({
+      name: req.body.name,
+      description: req.body.description,
+      image: req.body.image || 'product-default.png',
+      category_id: req.body.category_id,
+      brand_id: req.body.brand_id,
+      price: req.body.price,
+      featured: req.body.featured === 'on'
+    });
+
+    const colorIds = Array.isArray(req.body.colors) ? req.body.colors : (req.body.colors ? [req.body.colors] : []);
+    if (colorIds.length) await product.setColors(colorIds);
+
+    res.redirect(`/products/${product.id}`);
   },
 
-  edit: (req, res) => {
-    const product = productModel.findById(req.params.id);
+  edit: async (req, res) => {
+    const product = await Product.findByPk(req.params.id, { include: [{ model: Color, as: 'colors' }] });
 
     if (!product) {
-      return res.status(404).render('notFound', {
-        title: 'Producto no encontrado',
-        active: 'products'
-      });
+      return res.status(404).render('notFound', { title: 'Producto no encontrado', active: 'products' });
     }
 
+    const formData = await getFormData();
     res.render('products/productEdit', {
       title: `Editar ${product.name}`,
       active: 'admin',
-      product
+      product,
+      selectedColors: product.colors.map(color => color.id),
+      ...formData
     });
   },
 
-  update: (req, res) => {
-    productModel.update(req.params.id, req.body);
-    res.redirect(`/products/${req.params.id}`);
+  update: async (req, res) => {
+    const product = await Product.findByPk(req.params.id);
+
+    if (!product) {
+      return res.status(404).render('notFound', { title: 'Producto no encontrado', active: 'products' });
+    }
+
+    await product.update({
+      name: req.body.name,
+      description: req.body.description,
+      image: req.body.image || 'product-default.png',
+      category_id: req.body.category_id,
+      brand_id: req.body.brand_id,
+      price: req.body.price,
+      featured: req.body.featured === 'on'
+    });
+
+    const colorIds = Array.isArray(req.body.colors) ? req.body.colors : (req.body.colors ? [req.body.colors] : []);
+    await product.setColors(colorIds);
+
+    res.redirect(`/products/${product.id}`);
   },
 
-  destroy: (req, res) => {
-    productModel.delete(req.params.id);
+  destroy: async (req, res) => {
+    const product = await Product.findByPk(req.params.id);
+
+    if (product) {
+      await product.destroy();
+    }
+
     res.redirect('/products');
   }
 };

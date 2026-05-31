@@ -11,6 +11,7 @@
 
       <% if (userLogged) { %>
         <a class="<%= active === 'profile' ? 'active' : '' %>" href="/users/profile">Hola, <%= userLogged.firstName %></a>
+        <a class="<%= active === 'users' ? 'active' : '' %>" href="/users">Usuarios</a>
         <form class="logout-form" action="/users/logout" method="POST">
           <button type="submit">Salir</button>
         </form>

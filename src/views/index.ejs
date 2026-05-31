@@ -6,25 +6,21 @@
 
   <main>
     <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <p class="eyebrow">Marketplace gamer y tecnología</p>
-          <h1>Armá tu setup gamer ideal</h1>
-          <p>Periféricos, componentes y accesorios seleccionados para jugadores, streamers, estudiantes y usuarios que buscan mejorar su experiencia digital.</p>
-          <a class="btn btn-secondary" href="/products">Ver productos</a>
-        </div>
-        <aside class="hero-card">
-          <strong>Oferta destacada</strong>
-          <p class="muted">Combos de teclado, mouse y auriculares para comenzar a jugar con estilo.</p>
-        </aside>
+      <div class="container hero-content">
+        <p class="eyebrow">E-commerce gamer</p>
+        <h1>Armá tu setup con productos seleccionados</h1>
+        <p>Periféricos, audio, monitores, componentes y accesorios para gaming, streaming y home office.</p>
+        <a class="btn btn-secondary" href="/products">Ver catálogo</a>
       </div>
     </section>
 
-    <section class="section" id="productos">
+    <section class="section">
       <div class="container">
         <div class="section-head">
-          <h2 class="section-title">Productos destacados</h2>
-          <a href="/products" class="link-action">Ver todos</a>
+          <div>
+            <h2 class="section-title">Productos destacados</h2>
+            <p class="muted">Contenido dinámico obtenido desde MySQL mediante Sequelize.</p>
+          </div>
         </div>
         <div class="product-grid">
           <% products.forEach(product => { %>
@@ -34,12 +30,12 @@
       </div>
     </section>
 
-    <section class="section section-soft">
+    <section class="section alt-section">
       <div class="container">
         <h2 class="section-title">Categorías</h2>
         <div class="category-grid">
           <% categories.forEach(category => { %>
-            <a class="category-card" href="/products"><%= category %></a>
+            <a href="/products?search=<%= category.name %>" class="category-card"><%= category.name %></a>
           <% }) %>
         </div>
       </div>

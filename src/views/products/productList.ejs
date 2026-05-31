@@ -9,10 +9,19 @@
       <div class="section-head">
         <div>
           <h1 class="section-title">Listado de productos</h1>
-          <p class="muted">Catálogo dinámico leído desde products.json.</p>
+          <p class="muted">Catálogo leído desde base de datos con Sequelize.</p>
         </div>
         <a class="btn btn-secondary" href="/products/create">Crear producto</a>
       </div>
+
+      <form class="filter-box" action="/products" method="GET">
+        <input type="text" name="search" value="<%= search || '' %>" placeholder="Buscar por nombre o descripción">
+        <button class="btn" type="submit">Buscar</button>
+      </form>
+
+      <% if (products.length === 0) { %>
+        <section class="panel"><p>No se encontraron productos para la búsqueda realizada.</p></section>
+      <% } %>
 
       <div class="product-grid">
         <% products.forEach(product => { %>

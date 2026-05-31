@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const path = require('path');
 const methodOverride = require('method-override');
@@ -8,6 +10,7 @@ const mainRoutes = require('./routes/mainRoutes');
 const productRoutes = require('./routes/productRoutes');
 const userRoutes = require('./routes/userRoutes');
 const userLoggedMiddleware = require('./middlewares/userLoggedMiddleware');
+const db = require('./database/models');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -20,7 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 app.use(cookieParser());
 app.use(session({
-  secret: 'pixelforge-secret-key',
+  secret: process.env.SESSION_SECRET || 'pixelforge-secret-key',
   resave: false,
   saveUninitialized: false
 }));
@@ -37,6 +40,15 @@ app.use((req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`Servidor PixelForge activo en http://localhost:${PORT}`);
-});
+db.sequelize.authenticate()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Servidor PixelForge activo en http://localhost:${PORT}`);
+      console.log('Base de datos conectada correctamente con Sequelize.');
+    });
+  })
+  .catch(error => {
+    console.error('No se pudo conectar a la base de datos.');
+    console.error('Revisá database/scripts/structure.sql, data.sql y la configuración en .env');
+    console.error(error.message);
+  });

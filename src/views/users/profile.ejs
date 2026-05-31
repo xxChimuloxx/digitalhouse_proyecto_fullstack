@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="es">
 <%- include('../partials/head') %>
 <body>
   <%- include('../partials/header') %>
@@ -13,9 +15,12 @@
         <p><strong>Email:</strong> <%= user.email %></p>
         <p><strong>Categoría:</strong> <%= user.category %></p>
         <p class="muted">Desde esta sección el usuario podrá consultar sus datos, historial de compras y preferencias.</p>
-        <form action="/users/logout" method="POST">
-          <button class="btn-secondary" type="submit">Cerrar sesión</button>
-        </form>
+        <div class="detail-actions">
+          <a class="btn btn-outline" href="/users/<%= user.id %>/edit">Editar mi usuario</a>
+          <form action="/users/logout" method="POST" class="inline-form">
+            <button class="btn-secondary" type="submit">Cerrar sesión</button>
+          </form>
+        </div>
       </div>
     </section>
   </main>

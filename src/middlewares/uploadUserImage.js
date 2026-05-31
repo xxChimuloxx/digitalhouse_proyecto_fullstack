@@ -1,27 +1,19 @@
-const path = require('path');
 const multer = require('multer');
+const path = require('path');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, path.join(__dirname, '../../public/images/users'));
   },
   filename: (req, file, cb) => {
-    const uniqueName = `user-${Date.now()}${path.extname(file.originalname)}`;
-    cb(null, uniqueName);
+    const ext = path.extname(file.originalname);
+    cb(null, `user-${Date.now()}${ext}`);
   }
 });
 
 const fileFilter = (req, file, cb) => {
-  const allowedExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
-  const fileExtension = path.extname(file.originalname).toLowerCase();
-
-  if (allowedExtensions.includes(fileExtension)) {
-    cb(null, true);
-  } else {
-    cb(new Error('Solo se permiten imágenes JPG, JPEG, PNG, GIF o WEBP'));
-  }
+  const allowed = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+  cb(null, allowed.includes(file.mimetype));
 };
 
-const upload = multer({ storage, fileFilter });
-
-module.exports = upload;
+module.exports = multer({ storage, fileFilter });

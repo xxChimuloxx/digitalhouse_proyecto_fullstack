@@ -1,49 +1,56 @@
 const bcrypt = require('bcryptjs');
-const userModel = require('../models/userModel');
+const { User } = require('../database/models');
+
+const safeUser = user => ({
+  id: user.id,
+  firstName: user.firstName,
+  lastName: user.lastName,
+  email: user.email,
+  category: user.category,
+  image: user.image
+});
 
 const userController = {
   register: (req, res) => {
     res.render('users/register', {
       title: 'Registro',
       active: 'register',
-      errors: {},
+      error: null,
       oldData: {}
     });
   },
 
-  processRegister: (req, res) => {
-    const { firstName, lastName, email, password, category } = req.body;
-    const errors = {};
+  store: async (req, res) => {
+    const existingUser = await User.findOne({ where: { email: req.body.email } });
 
-    if (!firstName || firstName.trim().length < 2) errors.firstName = 'Ingresá un nombre válido.';
-    if (!lastName || lastName.trim().length < 2) errors.lastName = 'Ingresá un apellido válido.';
-    if (!email || !email.includes('@')) errors.email = 'Ingresá un email válido.';
-    if (!password || password.length < 6) errors.password = 'La contraseña debe tener al menos 6 caracteres.';
-
-    const existingUser = userModel.findByEmail(email || '');
-    if (existingUser) errors.email = 'Ya existe un usuario registrado con ese email.';
-
-    if (Object.keys(errors).length > 0) {
+    if (existingUser) {
       return res.render('users/register', {
         title: 'Registro',
         active: 'register',
-        errors,
+        error: 'Ya existe un usuario registrado con ese email.',
         oldData: req.body
       });
     }
 
-    const hashedPassword = bcrypt.hashSync(password, 10);
+    if (req.body.password !== req.body.confirmPassword) {
+      return res.render('users/register', {
+        title: 'Registro',
+        active: 'register',
+        error: 'Las contraseñas no coinciden.',
+        oldData: req.body
+      });
+    }
 
-    const newUser = userModel.create({
-      firstName: firstName.trim(),
-      lastName: lastName.trim(),
-      email: email.trim(),
-      password: hashedPassword,
-      category: category || 'customer',
+    const user = await User.create({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      password: bcrypt.hashSync(req.body.password, 10),
+      category: 'customer',
       image: req.file ? req.file.filename : 'default-user.png'
     });
 
-    req.session.userLogged = userModel.publicData(newUser);
+    req.session.userLogged = safeUser(user);
     res.redirect('/users/profile');
   },
 
@@ -51,30 +58,25 @@ const userController = {
     res.render('users/login', {
       title: 'Login',
       active: 'login',
-      errors: {},
-      oldData: {}
+      error: null
     });
   },
 
-  processLogin: (req, res) => {
-    const { email, password, remember } = req.body;
-    const errors = {};
-    const userToLogin = userModel.findByEmail(email || '');
+  processLogin: async (req, res) => {
+    const user = await User.findOne({ where: { email: req.body.email } });
 
-    if (!userToLogin || !bcrypt.compareSync(password || '', userToLogin.password)) {
-      errors.login = 'Las credenciales ingresadas no son correctas.';
+    if (!user || !bcrypt.compareSync(req.body.password, user.password)) {
       return res.render('users/login', {
         title: 'Login',
         active: 'login',
-        errors,
-        oldData: req.body
+        error: 'Email o contraseña incorrectos.'
       });
     }
 
-    req.session.userLogged = userModel.publicData(userToLogin);
+    req.session.userLogged = safeUser(user);
 
-    if (remember) {
-      res.cookie('userEmail', userToLogin.email, { maxAge: 1000 * 60 * 60 * 24 * 7 });
+    if (req.body.remember) {
+      res.cookie('userEmail', user.email, { maxAge: 1000 * 60 * 60 * 24 * 7 });
     }
 
     res.redirect('/users/profile');
@@ -88,11 +90,65 @@ const userController = {
     });
   },
 
-  logout: (req, res) => {
-    res.clearCookie('userEmail');
-    req.session.destroy(() => {
-      res.redirect('/');
+  list: async (req, res) => {
+    const users = await User.findAll({ order: [['id', 'ASC']] });
+    res.render('users/userList', {
+      title: 'Usuarios',
+      active: 'users',
+      users
     });
+  },
+
+  detail: async (req, res) => {
+    const user = await User.findByPk(req.params.id);
+    if (!user) {
+      return res.status(404).render('notFound', { title: 'Usuario no encontrado', active: 'users' });
+    }
+    res.render('users/userDetail', {
+      title: `${user.firstName} ${user.lastName}`,
+      active: 'users',
+      user
+    });
+  },
+
+  edit: async (req, res) => {
+    const user = await User.findByPk(req.params.id);
+    if (!user) {
+      return res.status(404).render('notFound', { title: 'Usuario no encontrado', active: 'users' });
+    }
+    res.render('users/userEdit', {
+      title: `Editar ${user.firstName}`,
+      active: 'users',
+      user,
+      error: null
+    });
+  },
+
+  update: async (req, res) => {
+    const user = await User.findByPk(req.params.id);
+    if (!user) {
+      return res.status(404).render('notFound', { title: 'Usuario no encontrado', active: 'users' });
+    }
+
+    await user.update({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      category: req.body.category || user.category,
+      image: req.file ? req.file.filename : user.image
+    });
+
+    if (req.session.userLogged && req.session.userLogged.id === user.id) {
+      req.session.userLogged = safeUser(user);
+    }
+
+    res.redirect(`/users/${user.id}`);
+  },
+
+  logout: (req, res) => {
+    req.session.destroy();
+    res.clearCookie('userEmail');
+    res.redirect('/');
   }
 };
 

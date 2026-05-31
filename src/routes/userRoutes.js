@@ -6,12 +6,15 @@ const authMiddleware = require('../middlewares/authMiddleware');
 const uploadUserImage = require('../middlewares/uploadUserImage');
 
 router.get('/register', guestMiddleware, userController.register);
-router.post('/register', guestMiddleware, uploadUserImage.single('image'), userController.processRegister);
-
+router.post('/register', uploadUserImage.single('image'), userController.store);
 router.get('/login', guestMiddleware, userController.login);
-router.post('/login', guestMiddleware, userController.processLogin);
-
+router.post('/login', userController.processLogin);
 router.get('/profile', authMiddleware, userController.profile);
-router.post('/logout', authMiddleware, userController.logout);
+router.post('/logout', userController.logout);
+
+router.get('/', authMiddleware, userController.list);
+router.get('/:id', authMiddleware, userController.detail);
+router.get('/:id/edit', authMiddleware, userController.edit);
+router.put('/:id', authMiddleware, uploadUserImage.single('image'), userController.update);
 
 module.exports = router;

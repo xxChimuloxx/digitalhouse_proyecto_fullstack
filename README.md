@@ -1,57 +1,75 @@
-# PixelForge Store - Sprint 5
+# PixelForge Store - Sprint 6
 
-PixelForge Store es un e-commerce orientado a productos gamer, accesorios tecnológicos y componentes para setup.
+PixelForge Store es un e-commerce de productos gamer y accesorios tecnológicos desarrollado como desafío profesional Full Stack.
 
-## Estado del proyecto
+## Sprint 6
 
-Sprint 5 implementado sobre la base del Sprint 4. El sitio ya cuenta con vistas dinámicas en EJS, CRUD de productos con JSON y flujo funcional de usuarios.
+En esta iteración se deja atrás la persistencia basada en archivos JSON y se incorpora una base de datos relacional con MySQL y Sequelize.
 
-## Funcionalidades principales
+## Entregables incluidos
 
-- Home dinámica.
-- Listado de productos.
-- Detalle de producto.
-- Carrito visual.
-- CRUD de productos con JSON.
-- Registro funcional de usuarios.
-- Subida de imagen de perfil con Multer.
-- Encriptación de contraseña con bcrypt.js.
-- Login y logout con sesiones.
-- Función opcional de recordar usuario con cookies.
-- Página de perfil protegida.
-- Middlewares para rutas de huéspedes y usuarios logueados.
+- Diagrama de entidad-relación en PDF.
+- Script `structure.sql` para crear la base de datos completa.
+- Script `data.sql` para poblar la base con datos iniciales.
+- Carpeta `database` con configuración y modelos de Sequelize.
+- CRUD de productos usando Sequelize.
+- CRUD básico de usuarios usando Sequelize.
+- Buscador de productos.
+- Relaciones entre productos, categorías, marcas y colores.
 
 ## Estructura principal
 
 ```txt
-src/
-├── app.js
-├── controllers/
-│   ├── mainController.js
-│   ├── productController.js
-│   └── userController.js
-├── data/
-│   ├── products.json
-│   └── users.json
-├── middlewares/
-│   ├── authMiddleware.js
-│   ├── guestMiddleware.js
-│   ├── uploadUserImage.js
-│   └── userLoggedMiddleware.js
-├── models/
-│   ├── productModel.js
-│   └── userModel.js
-├── routes/
-│   ├── mainRoutes.js
-│   ├── productRoutes.js
-│   └── userRoutes.js
-└── views/
-    ├── partials/
-    ├── products/
-    └── users/
+DPFS_sebastian_fuentes_sprint6/
+├── database/
+│   ├── config/
+│   ├── diagram/
+│   ├── models/
+│   └── scripts/
+├── public/
+├── src/
+│   ├── controllers/
+│   ├── database/models/
+│   ├── middlewares/
+│   ├── routes/
+│   └── views/
+├── .env.example
+├── package.json
+├── README.md
+└── retro.md
 ```
 
-## Instalación
+## Configuración de base de datos
+
+1. Crear la base ejecutando:
+
+```sql
+source database/scripts/structure.sql;
+```
+
+2. Cargar datos iniciales:
+
+```sql
+source database/scripts/data.sql;
+```
+
+También se pueden ejecutar ambos archivos desde phpMyAdmin o MySQL Workbench.
+
+## Variables de entorno
+
+Copiar `.env.example` como `.env` y ajustar los datos según el entorno local:
+
+```env
+DB_USERNAME=root
+DB_PASSWORD=
+DB_DATABASE=pixelforge_store
+DB_HOST=127.0.0.1
+DB_DIALECT=mysql
+PORT=3000
+SESSION_SECRET=pixelforge-secret-key
+```
+
+## Instalación y ejecución
 
 ```bash
 npm install
@@ -64,17 +82,6 @@ Luego abrir:
 http://localhost:3000
 ```
 
-## Rutas de usuarios
-
-```txt
-GET     /users/register
-POST    /users/register
-GET     /users/login
-POST    /users/login
-GET     /users/profile
-POST    /users/logout
-```
-
 ## Usuarios de prueba
 
 ```txt
@@ -85,10 +92,30 @@ Email: admin@pixelforge.com
 Password: admin123
 ```
 
-## Tablero de trabajo
-
-Agregar aquí el enlace al tablero utilizado para organizar el sprint.
+## Rutas principales
 
 ```txt
-Link del tablero: pendiente de carga
+GET     /products
+GET     /products?search=teclado
+GET     /products/create
+POST    /products
+GET     /products/:id
+GET     /products/:id/edit
+PUT     /products/:id
+DELETE  /products/:id
+
+GET     /users
+GET     /users/:id
+GET     /users/:id/edit
+PUT     /users/:id
+GET     /users/register
+POST    /users/register
+GET     /users/login
+POST    /users/login
+GET     /users/profile
+POST    /users/logout
 ```
+
+## Tablero de trabajo
+
+El tablero de trabajo se mantiene actualizado para organizar las tareas del sprint, incluyendo diseño de base de datos, scripts SQL, configuración Sequelize, modelos, relaciones y actualización de CRUDs.

@@ -8,29 +8,37 @@
     <div class="container narrow">
       <section class="form-card">
         <h1>Crear producto</h1>
-        <p class="muted">Formulario funcional para agregar nuevos productos al archivo JSON.</p>
+        <p class="muted">Formulario funcional para agregar productos en MySQL usando Sequelize.</p>
         <form action="/products" method="POST">
           <label>Nombre del producto
             <input type="text" name="name" placeholder="Ej: Teclado mecánico RGB" required>
           </label>
           <label>Descripción
-            <textarea name="description" rows="4" placeholder="Descripción breve del producto" required></textarea>
+            <textarea name="description" rows="4" required></textarea>
           </label>
           <label>Imagen
-            <input type="text" name="image" placeholder="producto-generico.png">
+            <input type="text" name="image" placeholder="product-default.png">
           </label>
           <label>Categoría
-            <select name="category" required>
-              <option value="Periféricos">Periféricos</option>
-              <option value="Audio">Audio</option>
-              <option value="Monitores">Monitores</option>
-              <option value="PC y componentes">PC y componentes</option>
-              <option value="Sillas">Sillas</option>
-              <option value="Streaming">Streaming</option>
+            <select name="category_id" required>
+              <% categories.forEach(category => { %>
+                <option value="<%= category.id %>"><%= category.name %></option>
+              <% }) %>
+            </select>
+          </label>
+          <label>Marca
+            <select name="brand_id" required>
+              <% brands.forEach(brand => { %>
+                <option value="<%= brand.id %>"><%= brand.name %></option>
+              <% }) %>
             </select>
           </label>
           <label>Colores
-            <input type="text" name="colors" placeholder="Negro, azul, violeta">
+            <select name="colors" multiple>
+              <% colors.forEach(color => { %>
+                <option value="<%= color.id %>"><%= color.name %></option>
+              <% }) %>
+            </select>
           </label>
           <label>Precio
             <input type="number" name="price" placeholder="89999" required>
