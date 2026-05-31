@@ -1,0 +1,20 @@
+{
+  "name": "dpfs_sebastian_fuentes_sprint3",
+  "version": "1.0.0",
+  "description": "PixelForge Store - Sprint 3 - Node.js, Express y EJS",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "keywords": ["express", "ejs", "full-stack", "ecommerce"],
+  "author": "Sebastián Fuentes",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.18.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

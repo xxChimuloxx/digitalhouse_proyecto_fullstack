@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head') %>
+<body>
+  <%- include('../partials/header') %>
+
+  <main class="section">
+    <div class="container cart-layout">
+      <section>
+        <h1 class="section-title">Carrito de compras</h1>
+        <% cartProducts.forEach((product, index) => { %>
+          <article class="cart-row">
+            <div class="cart-img">Imagen</div>
+            <div class="cart-info">
+              <h3><%= product.name %></h3>
+              <p class="muted"><%= product.description %></p>
+            </div>
+            <div class="qty-control">
+              <button>-</button>
+              <span><%= index === 1 ? 2 : 1 %></span>
+              <button>+</button>
+            </div>
+            <strong>$<%= product.price.toLocaleString('es-AR') %></strong>
+            <button class="delete-btn">Eliminar</button>
+          </article>
+        <% }) %>
+        <a class="link-action" href="/products">← Seguir comprando</a>
+      </section>
+
+      <aside class="cart-summary">
+        <h2>Resumen</h2>
+        <div class="summary-row"><span>Subtotal</span><strong>$<%= subtotal.toLocaleString('es-AR') %></strong></div>
+        <div class="summary-row"><span>Envío</span><strong>$0</strong></div>
+        <div class="summary-row total"><span>Total</span><strong>$<%= subtotal.toLocaleString('es-AR') %></strong></div>
+        <a class="btn btn-secondary full" href="/users/login">Finalizar compra</a>
+      </aside>
+    </div>
+  </main>
+
+  <%- include('../partials/footer') %>
+</body>
+</html>

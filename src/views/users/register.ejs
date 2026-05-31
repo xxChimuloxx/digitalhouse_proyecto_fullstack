@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head') %>
+<body>
+  <%- include('../partials/header') %>
+
+  <main class="section auth-section">
+    <div class="container narrow">
+      <section class="form-card">
+        <h1>Registro</h1>
+        <p class="muted">Creá tu cuenta para acceder a futuras compras e historial.</p>
+        <form>
+          <label>Nombre
+            <input type="text" placeholder="Sebastián">
+          </label>
+          <label>Apellido
+            <input type="text" placeholder="Fuentes">
+          </label>
+          <label>Email
+            <input type="email" placeholder="ejemplo@email.com">
+          </label>
+          <label>Contraseña
+            <input type="password" placeholder="********">
+          </label>
+          <label>Confirmar contraseña
+            <input type="password" placeholder="********">
+          </label>
+          <p class="form-error">Ejemplo de error visual: las contraseñas no coinciden.</p>
+          <button class="btn btn-secondary" type="button">Crear cuenta</button>
+        </form>
+        <p class="auth-link">¿Ya tenés cuenta? <a href="/users/login">Iniciar sesión</a></p>
+      </section>
+    </div>
+  </main>
+
+  <%- include('../partials/footer') %>
+</body>
+</html>

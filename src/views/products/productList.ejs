@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head') %>
+<body>
+  <%- include('../partials/header') %>
+
+  <main class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h1 class="section-title">Listado de productos</h1>
+          <p class="muted">Catálogo dinámico renderizado con EJS.</p>
+        </div>
+        <a class="btn btn-secondary" href="/products/create">Crear producto</a>
+      </div>
+
+      <div class="product-grid">
+        <% products.forEach(product => { %>
+          <%- include('../partials/productCard', { product }) %>
+        <% }) %>
+      </div>
+    </div>
+  </main>
+
+  <%- include('../partials/footer') %>
+</body>
+</html>

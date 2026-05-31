@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head') %>
+<body>
+  <%- include('../partials/header') %>
+
+  <main class="section">
+    <div class="container narrow">
+      <section class="form-card">
+        <h1>Crear producto</h1>
+        <p class="muted">Formulario visual para administrador. En este sprint todavía no guarda datos.</p>
+        <form>
+          <label>Nombre del producto
+            <input type="text" name="name" placeholder="Ej: Teclado mecánico RGB">
+          </label>
+          <label>Descripción
+            <textarea name="description" rows="4" placeholder="Descripción breve del producto"></textarea>
+          </label>
+          <label>Imagen
+            <input type="file" name="image">
+          </label>
+          <label>Categoría
+            <select name="category">
+              <option>Periféricos</option>
+              <option>Audio</option>
+              <option>Monitores</option>
+              <option>PC y componentes</option>
+            </select>
+          </label>
+          <label>Color
+            <input type="text" name="color" placeholder="Negro, azul, violeta...">
+          </label>
+          <label>Precio
+            <input type="number" name="price" placeholder="89999">
+          </label>
+          <p class="form-error">Ejemplo de error visual: el nombre del producto es obligatorio.</p>
+          <button class="btn btn-secondary" type="button">Guardar producto</button>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <%- include('../partials/footer') %>
+</body>
+</html>

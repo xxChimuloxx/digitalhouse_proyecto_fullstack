@@ -16,44 +16,64 @@ Mi nombre es Sebastián Fuentes. Soy estudiante de desarrollo Full Stack y me in
 
 ## Sitios de referencia
 
-1. Mercado Libre: elegido por su estructura de navegación, sistema de búsqueda, categorías, publicaciones de productos y carrito de compras.
-2. Compra Gamer: elegido por estar directamente relacionado con productos gamer, componentes de PC y armado de equipos.
-3. FullH4rd: elegido por su catálogo de hardware, componentes y periféricos.
-4. Maximus Gaming Hardware: elegido por su estética orientada al público gamer y por la presentación de productos destacados.
-5. Amazon: elegido por su experiencia de usuario, detalle de producto, opiniones y estructura general de e-commerce.
+1. Mercado Libre: referencia por su estructura de navegación, categorías, publicaciones de productos y carrito de compras.
+2. Compra Gamer: referencia directa para productos gamer, componentes de PC y presentación técnica.
+3. FullH4rd: referencia para organizar categorías de hardware y mostrar especificaciones relevantes.
+4. Maximus Gaming Hardware: referencia estética orientada al público gamer.
+5. Amazon: referencia internacional por su experiencia de usuario, detalle de producto y recomendaciones.
 
 ## Tablero de trabajo
 
-Enlace al tablero de trabajo: pendiente de agregar.
+Tablero de trabajo del proyecto: pendiente de reemplazar por URL real de Trello o GitHub Projects.
 
-## Wireframes requeridos
+## Sprint 3
 
-Los wireframes del proyecto se organizan dentro de la carpeta `/wireframes` e incluyen las siguientes pantallas:
+En esta etapa el proyecto deja de ser una maqueta HTML estática y pasa a una aplicación Node.js con Express y EJS.
 
-- Home
-- Detalle de producto
-- Carrito de compras
-- Formulario de registro
-- Formulario de login
+### Funcionalidades y estructura implementada
 
-## Diseño visual propuesto
+- Servidor Express.
+- Motor de templates EJS.
+- Vistas renderizadas con `res.render()`.
+- Carpeta `views/partials` con componentes reutilizables:
+  - `head.ejs`
+  - `header.ejs`
+  - `footer.ejs`
+  - `productCard.ejs`
+- Vistas organizadas en carpetas:
+  - `src/views/products/`
+  - `src/views/users/`
+- Home.
+- Listado de productos.
+- Detalle de producto.
+- Carrito de compras.
+- Registro.
+- Login.
+- Creación de producto.
+- Edición de producto.
 
-El diseño visual del sitio busca una estética moderna, tecnológica y gamer, utilizando colores oscuros combinados con acentos luminosos.
+## Instalación y ejecución
 
-### Paleta de colores tentativa
+```bash
+npm install
+npm start
+```
 
-- Fondo principal: negro / gris oscuro
-- Color primario: violeta eléctrico
-- Color secundario: azul neón
-- Color de acción: cian
-- Texto principal: blanco
-- Texto secundario: gris claro
+Luego abrir en el navegador:
 
-### Tipografías tentativas
+```txt
+http://localhost:3000
+```
 
-- Títulos: Montserrat
-- Texto general: Arial / sans-serif
+## Rutas principales
 
-## Estado del proyecto
-
-Proyecto correspondiente al Sprint 2. Actualmente se encuentra desarrollada la maqueta HTML y CSS de las principales páginas del sitio.
+```txt
+/                       Home
+/products               Listado de productos
+/products/detail/1      Detalle de producto
+/cart                   Carrito de compras
+/users/register         Registro
+/users/login            Login
+/products/create        Crear producto
+/products/edit/1        Editar producto
+```

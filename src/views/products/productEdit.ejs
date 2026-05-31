@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head') %>
+<body>
+  <%- include('../partials/header') %>
+
+  <main class="section">
+    <div class="container narrow">
+      <section class="form-card">
+        <h1>Editar producto</h1>
+        <p class="muted">Formulario visual para modificar información existente.</p>
+        <form>
+          <label>Nombre del producto
+            <input type="text" name="name" value="<%= product.name %>">
+          </label>
+          <label>Descripción
+            <textarea name="description" rows="4"><%= product.description %></textarea>
+          </label>
+          <label>Imagen
+            <input type="file" name="image">
+          </label>
+          <label>Categoría
+            <input type="text" name="category" value="<%= product.category %>">
+          </label>
+          <label>Color
+            <input type="text" name="color" value="<%= product.color %>">
+          </label>
+          <label>Precio
+            <input type="number" name="price" value="<%= product.price %>">
+          </label>
+          <button class="btn btn-secondary" type="button">Actualizar producto</button>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <%- include('../partials/footer') %>
+</body>
+</html>

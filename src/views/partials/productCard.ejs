@@ -1,0 +1,10 @@
+<article class="product-card">
+  <div class="product-img"><%= product.category %></div>
+  <h3><%= product.name %></h3>
+  <p class="muted"><%= product.description %></p>
+  <p class="price">$<%= product.price.toLocaleString('es-AR') %></p>
+  <div class="card-actions">
+    <a class="btn" href="/products/detail/<%= product.id %>">Ver producto</a>
+    <a class="btn btn-outline" href="/products/edit/<%= product.id %>">Editar</a>
+  </div>
+</article>

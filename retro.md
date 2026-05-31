@@ -1,21 +1,43 @@
-# Retrospectiva Sprint 1
+# Retrospectiva - Sprint 1 y Sprint 2
 
-## Comenzar a hacer
+## Retrospectiva del Sprint 1
 
-Comenzar a organizar las tareas del proyecto en un tablero de trabajo para tener mayor claridad sobre lo pendiente, lo que está en curso y lo finalizado. También comenzar a registrar decisiones importantes del proyecto en el repositorio para mantener una documentación ordenada.
+### Comenzar a hacer
+- Organizar desde el inicio las carpetas del proyecto para evitar desorden en futuras entregas.
+- Documentar decisiones de diseño, colores y tipografías dentro del repositorio.
 
-## Hacer más
+### Hacer más
+- Usar wireframes como guía antes de avanzar con código.
+- Revisar la consigna completa antes de definir los entregables.
 
-Dedicar más tiempo a revisar referencias visuales y funcionales de otros sitios similares, ya que esto ayuda a tomar mejores decisiones de diseño y experiencia de usuario. También resulta útil avanzar con entregables simples pero completos, evitando dejar partes sin documentar.
+### Continuar haciendo
+- Mantener una temática clara y fácil de ampliar.
+- Trabajar con una estética coherente entre las distintas pantallas.
 
-## Continuar haciendo
+### Hacer menos
+- Evitar agregar detalles visuales innecesarios en etapas tempranas.
+- No dedicar demasiado tiempo a funcionalidades que aún no fueron solicitadas.
 
-Continuar trabajando con una temática clara para el sitio, manteniendo coherencia entre el público objetivo, los productos ofrecidos y la estética visual elegida. También continuar usando wireframes como guía antes de comenzar a programar.
+### Dejar de hacer
+- Dejar para el final tareas básicas como estructura de carpetas o documentación.
 
-## Hacer menos
+## Retrospectiva del Sprint 2
 
-Hacer menos cambios improvisados durante el desarrollo sin revisar primero si afectan la estructura general del proyecto. Es preferible mantener una planificación simple y avanzar de manera ordenada.
+### Comenzar a hacer
+- Separar desde el principio las partes repetidas del sitio, como header, footer y navegación.
+- Planificar mejor la estructura futura pensando en Express y EJS.
 
-## Dejar de hacer
+### Hacer más
+- Reutilizar componentes comunes para reducir código duplicado.
+- Probar la navegación entre páginas después de cada cambio importante.
 
-Dejar de postergar la documentación del proyecto para el final del sprint. Registrar la información desde el inicio permite evitar olvidos y facilita la entrega.
+### Continuar haciendo
+- Mantener la maqueta simple, clara y responsive.
+- Usar nombres de archivos y carpetas consistentes con la consigna.
+
+### Hacer menos
+- Repetir bloques HTML idénticos en cada página.
+- Ajustar estilos página por página cuando podrían resolverse con clases reutilizables.
+
+### Dejar de hacer
+- Trabajar cada vista como si fuera una página aislada sin pensar en el crecimiento del proyecto.
