@@ -1,78 +1,101 @@
-# PixelForge Store - Sprint 7
+# PixelForge Store - Sprint 8
 
 Proyecto e-commerce desarrollado para el Desafío Profesional Full Stack.
 
-En este sprint se agregan validaciones de back-end y front-end sobre la base del Sprint 6, que ya trabajaba con Node.js, Express, EJS, Sequelize y MySQL.
+En este sprint final se agregan endpoints API para usuarios y productos, más un dashboard desarrollado con React que consume esas APIs y muestra métricas generales del negocio.
 
-## Funcionalidades principales
+## Funcionalidades principales acumuladas
 
 - Home dinámica.
 - Listado de productos.
 - Detalle de producto.
 - Carrito visual.
-- CRUD de productos con Sequelize.
-- CRUD básico de usuarios con Sequelize.
+- CRUD de productos con Sequelize y MySQL.
+- CRUD básico de usuarios con Sequelize y MySQL.
 - Registro de usuarios con imagen de perfil.
 - Login, logout, sesión y cookie de recordarme.
 - Rutas protegidas para usuarios logueados.
 - Rutas de huéspedes para login y registro.
 - Validaciones de back-end con Express Validator.
 - Validaciones de front-end con JavaScript custom.
+- API REST de usuarios.
+- API REST de productos.
+- Dashboard React consumiendo datos de la API.
 
-## Validaciones implementadas
+## Endpoints API
 
-### Registro de usuarios
+### Usuarios
 
-Back-end y front-end validan:
+```txt
+GET /api/users
+GET /api/users/:id
+```
 
-- Nombre obligatorio y mínimo 2 caracteres.
-- Apellido obligatorio y mínimo 2 caracteres.
-- Email obligatorio y formato válido.
-- Email no repetido en base de datos.
-- Contraseña obligatoria y mínimo 8 caracteres.
-- Confirmación de contraseña coincidente.
-- Imagen válida: JPG, JPEG, PNG o GIF.
+`/api/users` devuelve:
 
-### Login de usuarios
+- `count`: cantidad total de usuarios.
+- `users`: colección de usuarios con `id`, `name`, `email` y `detail`.
+- `next` y `previous` para paginado opcional.
 
-Back-end y front-end validan:
+`/api/users/:id` devuelve el detalle del usuario sin datos sensibles como contraseña o categoría.
 
-- Email obligatorio.
-- Email con formato válido.
-- Email existente en base de datos.
-- Contraseña obligatoria.
-- Contraseña coincidente con la almacenada.
+### Productos
 
-### Creación y edición de productos
+```txt
+GET /api/products
+GET /api/products/:id
+```
 
-Back-end y front-end validan:
+`/api/products` devuelve:
 
-- Nombre obligatorio y mínimo 5 caracteres.
-- Descripción obligatoria y mínimo 20 caracteres.
-- Imagen válida: JPG, JPEG, PNG o GIF.
-- Categoría existente en base.
-- Marca existente en base.
-- Colores existentes en base.
-- Precio obligatorio y mayor a cero.
+- `count`: cantidad total de productos.
+- `countByCategory`: cantidad de productos por categoría.
+- `products`: colección de productos con `id`, `name`, `description`, relaciones principales y `detail`.
+- `next` y `previous` para paginado opcional.
+
+`/api/products/:id` devuelve el detalle del producto, relaciones e imagen.
+
+## Dashboard React
+
+El dashboard se encuentra en:
+
+```txt
+http://localhost:3000/dashboard
+```
+
+Incluye:
+
+- Total de productos.
+- Total de usuarios.
+- Total de categorías.
+- Panel de último producto creado.
+- Panel de categorías con cantidad de productos.
+- Listado de productos.
 
 ## Estructura relevante
 
 ```txt
 src/
 ├── controllers/
+│   └── api/
+│       ├── productApiController.js
+│       └── userApiController.js
 ├── database/models/
 ├── middlewares/
 ├── routes/
+│   └── api/
+│       ├── productApiRoutes.js
+│       └── userApiRoutes.js
 ├── validations/
-│   ├── productValidations.js
-│   └── userValidations.js
 └── views/
 
 public/
 ├── css/styles.css
-└── js/
-    ├── productValidation.js
-    └── userValidation.js
+├── js/
+└── dashboard/
+    ├── index.html
+    ├── app.jsx
+    └── styles.css
 ```
 
 ## Instalación
@@ -102,6 +125,12 @@ Abrir en el navegador:
 
 ```txt
 http://localhost:3000
+```
+
+Dashboard:
+
+```txt
+http://localhost:3000/dashboard
 ```
 
 ## Usuarios de prueba

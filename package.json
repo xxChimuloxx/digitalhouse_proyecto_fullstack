@@ -1,7 +1,7 @@
 {
-  "name": "dpfs_sebastian_fuentes_sprint7",
+  "name": "dpfs_sebastian_fuentes_sprint8",
   "version": "1.0.0",
-  "description": "PixelForge Store - Sprint 7 - Validaciones back-end y front-end",
+  "description": "PixelForge Store - Sprint 8 - APIs y dashboard React",
   "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js",

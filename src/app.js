@@ -9,6 +9,8 @@ const cookieParser = require('cookie-parser');
 const mainRoutes = require('./routes/mainRoutes');
 const productRoutes = require('./routes/productRoutes');
 const userRoutes = require('./routes/userRoutes');
+const productApiRoutes = require('./routes/api/productApiRoutes');
+const userApiRoutes = require('./routes/api/userApiRoutes');
 const userLoggedMiddleware = require('./middlewares/userLoggedMiddleware');
 const db = require('./database/models');
 
@@ -28,6 +30,10 @@ app.use(session({
   saveUninitialized: false
 }));
 app.use(userLoggedMiddleware);
+
+app.use('/api/products', productApiRoutes);
+app.use('/api/users', userApiRoutes);
+app.use('/dashboard', express.static(path.join(__dirname, '../public/dashboard')));
 
 app.use('/', mainRoutes);
 app.use('/products', productRoutes);

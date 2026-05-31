@@ -1,29 +1,27 @@
-# Retrospectiva - Sprint 7
+# Retrospectiva - Sprint 8
 
 ## Comenzar a hacer
 
-- Validar cada formulario desde el back-end antes de guardar información en la base de datos.
-- Agregar validaciones de front-end para mejorar la experiencia del usuario.
-- Mantener los mensajes de error cerca de cada campo para que sean fáciles de entender.
+- Probar los endpoints API con herramientas como Postman o Thunder Client antes de integrarlos al dashboard.
+- Documentar mejor las respuestas JSON esperadas para facilitar futuras integraciones.
 
 ## Hacer más
 
-- Reutilizar middlewares y archivos de validación para evitar repetir lógica en los controladores.
-- Probar casos incorrectos, no solo el camino feliz.
-- Revisar que los datos enviados desde los formularios coincidan con las restricciones de la base.
+- Reutilizar componentes visuales y lógicos en el dashboard React.
+- Mantener separadas las responsabilidades entre rutas, controladores y vistas.
 
 ## Continuar haciendo
 
-- Mantener la estructura separada por rutas, controladores, vistas, modelos y middlewares.
-- Utilizar Sequelize como capa de acceso a datos.
-- Documentar los cambios principales del sprint en el README.
+- Trabajar por sprints, separando entregables concretos por iteración.
+- Mantener una estructura clara de carpetas para que el proyecto sea fácil de revisar.
+- Validar datos tanto desde el front-end como desde el back-end.
 
 ## Hacer menos
 
-- Evitar cargar validaciones directamente dentro de las vistas.
-- Evitar confiar únicamente en los atributos HTML como `required`, porque pueden ser deshabilitados desde el navegador.
+- Evitar dejar pruebas manuales sin registrar.
+- Evitar concentrar demasiada lógica en un solo archivo.
 
 ## Dejar de hacer
 
-- Dejar de guardar datos sin verificar formato, longitud mínima o existencia en base.
-- Dejar de mostrar errores genéricos cuando se puede informar claramente qué campo debe corregirse.
+- No depender de datos estáticos cuando ya existe una base de datos funcional.
+- No exponer datos sensibles en las respuestas de API.

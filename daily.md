@@ -1,13 +1,20 @@
-# Daily / Weekly - Sprint 7
+# Daily / Weekly - Sprint 8
 
-Durante este sprint el foco estuvo puesto en reforzar la calidad de los datos ingresados por el usuario. Se implementaron validaciones de back-end con Express Validator y validaciones de front-end con JavaScript para evitar envíos innecesarios al servidor.
+## Qué se hizo
 
-Las principales tareas realizadas fueron:
+- Se crearon endpoints API para usuarios y productos.
+- Se agregó paginado opcional en los listados de la API.
+- Se ocultó información sensible de usuarios en las respuestas JSON.
+- Se creó un dashboard React que consume la API.
+- Se agregaron paneles de métricas, categorías, último producto y listado de productos.
 
-- Validaciones del formulario de registro.
-- Validaciones del formulario de login.
-- Validaciones de creación y edición de productos.
-- Mensajes visuales de error en las vistas EJS.
-- Archivos JavaScript específicos para validaciones del lado del cliente.
+## Qué falta revisar
 
-El mayor punto de atención fue mantener coherencia entre lo que valida el front-end y lo que valida el back-end, recordando que la validación del servidor siempre debe ser la protección principal.
+- Probar la API con la base MySQL cargada en el entorno local.
+- Verificar que las imágenes existan físicamente en las carpetas públicas correspondientes.
+- Validar el dashboard desde distintos tamaños de pantalla.
+
+## Riesgos o bloqueos
+
+- La aplicación depende de que MySQL esté levantado y de que los scripts SQL hayan sido ejecutados.
+- El dashboard consume endpoints locales, por lo que el servidor Express debe estar activo.
