@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "name": "Teclado Mecánico RGB",
+    "description": "Teclado mecánico con switches táctiles, iluminación RGB y estructura reforzada para gaming competitivo.",
+    "image": "teclado-mecanico-rgb.png",
+    "category": "Periféricos",
+    "colors": [
+      "Negro",
+      "Violeta"
+    ],
+    "price": 89999,
+    "featured": true
+  },
+  {
+    "id": 2,
+    "name": "Mouse Gamer Pro",
+    "description": "Mouse ergonómico con sensor óptico de alta precisión, botones programables y diseño liviano.",
+    "image": "mouse-gamer-pro.png",
+    "category": "Periféricos",
+    "colors": [
+      "Negro"
+    ],
+    "price": 45999,
+    "featured": true
+  },
+  {
+    "id": 3,
+    "name": "Auriculares 7.1",
+    "description": "Auriculares con sonido envolvente, micrófono flexible y almohadillas cómodas para largas sesiones.",
+    "image": "auriculares-71.png",
+    "category": "Audio",
+    "colors": [
+      "Azul",
+      "Negro"
+    ],
+    "price": 72500,
+    "featured": true
+  },
+  {
+    "id": 4,
+    "name": "Monitor 144Hz",
+    "description": "Monitor gamer de alta tasa de refresco, ideal para juegos competitivos y trabajo multimedia.",
+    "image": "monitor-144hz.png",
+    "category": "Monitores",
+    "colors": [
+      "Negro"
+    ],
+    "price": 310000,
+    "featured": true
+  },
+  {
+    "id": 5,
+    "name": "Silla Gamer Ergonómica",
+    "description": "Silla con soporte lumbar, apoyabrazos regulables y estructura reforzada para setup gamer o home office.",
+    "image": "silla-gamer.png",
+    "category": "Sillas",
+    "colors": [
+      "Negro",
+      "Rojo"
+    ],
+    "price": 245000,
+    "featured": false
+  },
+  {
+    "id": 6,
+    "name": "Micrófono Streaming USB",
+    "description": "Micrófono condenser USB con soporte de escritorio, ideal para streaming, podcasts y videollamadas.",
+    "image": "microfono-streaming-usb.png",
+    "category": "Streaming",
+    "colors": [
+      "Negro"
+    ],
+    "price": 68000,
+    "featured": false
+  },
+  {
+    "id": 7,
+    "name": "Mousepad XL RGB",
+    "description": "Mousepad extendido con superficie de precisión, base antideslizante e iluminación RGB perimetral.",
+    "image": "mousepad-xl-rgb.png",
+    "category": "Periféricos",
+    "colors": [
+      "Negro"
+    ],
+    "price": 38900,
+    "featured": false
+  },
+  {
+    "id": 8,
+    "name": "Notebook Gamer 15",
+    "description": "Notebook con placa gráfica dedicada, pantalla Full HD y almacenamiento SSD para juegos y productividad.",
+    "image": "notebook-gamer-15.png",
+    "category": "PC y componentes",
+    "colors": [
+      "Gris",
+      "Negro"
+    ],
+    "price": 1250000,
+    "featured": false
+  }
+]

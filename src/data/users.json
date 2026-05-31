@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "firstName": "Lucía",
+    "lastName": "Gómez",
+    "email": "lucia.gomez@example.com",
+    "password": "123456",
+    "category": "cliente",
+    "image": "default-user.png"
+  },
+  {
+    "id": 2,
+    "firstName": "Martín",
+    "lastName": "Pérez",
+    "email": "martin.perez@example.com",
+    "password": "123456",
+    "category": "cliente",
+    "image": "default-user.png"
+  },
+  {
+    "id": 3,
+    "firstName": "Admin",
+    "lastName": "PixelForge",
+    "email": "admin@pixelforge.com",
+    "password": "admin123",
+    "category": "admin",
+    "image": "admin-user.png"
+  }
+]

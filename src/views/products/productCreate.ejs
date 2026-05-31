@@ -8,33 +8,38 @@
     <div class="container narrow">
       <section class="form-card">
         <h1>Crear producto</h1>
-        <p class="muted">Formulario visual para administrador. En este sprint todavía no guarda datos.</p>
-        <form>
+        <p class="muted">Formulario funcional para agregar nuevos productos al archivo JSON.</p>
+        <form action="/products" method="POST">
           <label>Nombre del producto
-            <input type="text" name="name" placeholder="Ej: Teclado mecánico RGB">
+            <input type="text" name="name" placeholder="Ej: Teclado mecánico RGB" required>
           </label>
           <label>Descripción
-            <textarea name="description" rows="4" placeholder="Descripción breve del producto"></textarea>
+            <textarea name="description" rows="4" placeholder="Descripción breve del producto" required></textarea>
           </label>
           <label>Imagen
-            <input type="file" name="image">
+            <input type="text" name="image" placeholder="producto-generico.png">
           </label>
           <label>Categoría
-            <select name="category">
-              <option>Periféricos</option>
-              <option>Audio</option>
-              <option>Monitores</option>
-              <option>PC y componentes</option>
+            <select name="category" required>
+              <option value="Periféricos">Periféricos</option>
+              <option value="Audio">Audio</option>
+              <option value="Monitores">Monitores</option>
+              <option value="PC y componentes">PC y componentes</option>
+              <option value="Sillas">Sillas</option>
+              <option value="Streaming">Streaming</option>
             </select>
           </label>
-          <label>Color
-            <input type="text" name="color" placeholder="Negro, azul, violeta...">
+          <label>Colores
+            <input type="text" name="colors" placeholder="Negro, azul, violeta">
           </label>
           <label>Precio
-            <input type="number" name="price" placeholder="89999">
+            <input type="number" name="price" placeholder="89999" required>
           </label>
-          <p class="form-error">Ejemplo de error visual: el nombre del producto es obligatorio.</p>
-          <button class="btn btn-secondary" type="button">Guardar producto</button>
+          <label class="checkbox-line">
+            <input type="checkbox" name="featured">
+            Mostrar como producto destacado
+          </label>
+          <button class="btn btn-secondary" type="submit">Guardar producto</button>
         </form>
       </section>
     </div>

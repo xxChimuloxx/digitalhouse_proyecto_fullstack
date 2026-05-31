@@ -1,56 +1,25 @@
 # PixelForge Store
 
-## Descripción del proyecto
-
-PixelForge Store es un e-commerce orientado a la venta de productos gamer, accesorios tecnológicos y componentes para setup. El sitio ofrecerá productos como teclados mecánicos, mouses gamer, auriculares, mousepads, monitores, sillas gamer, notebooks, componentes de PC y accesorios para streaming.
-
-La propuesta busca combinar una experiencia visual moderna con una navegación simple, permitiendo que el usuario pueda explorar productos, consultar sus características principales, agregarlos al carrito y avanzar en el proceso de compra de manera clara e intuitiva.
+PixelForge Store es un e-commerce orientado a la venta de productos gamer, accesorios tecnológicos y componentes para setup. El sitio ofrece productos como teclados mecánicos, mouses gamer, auriculares, monitores, sillas gamer, notebooks, componentes de PC y accesorios para streaming.
 
 ## Público objetivo
 
-El sitio está dirigido principalmente a jóvenes y adultos interesados en el gaming, la tecnología, el streaming, el home office y el armado de setups personalizados. También apunta a estudiantes, trabajadores remotos y usuarios que buscan mejorar su experiencia digital mediante accesorios de calidad.
+El sitio está dirigido a jóvenes y adultos interesados en gaming, tecnología, streaming, estudio, home office y armado de setups personalizados.
 
-## Descripción personal
+## Sprint 4
 
-Mi nombre es Sebastián Fuentes. Soy estudiante de desarrollo Full Stack y me interesa especialmente el desarrollo de soluciones tecnológicas funcionales, visualmente claras y orientadas a resolver necesidades reales de los usuarios.
+En este sprint el proyecto incorpora persistencia básica mediante archivos JSON y administración completa de productos.
 
-## Sitios de referencia
+### Funcionalidades incorporadas
 
-1. Mercado Libre: referencia por su estructura de navegación, categorías, publicaciones de productos y carrito de compras.
-2. Compra Gamer: referencia directa para productos gamer, componentes de PC y presentación técnica.
-3. FullH4rd: referencia para organizar categorías de hardware y mostrar especificaciones relevantes.
-4. Maximus Gaming Hardware: referencia estética orientada al público gamer.
-5. Amazon: referencia internacional por su experiencia de usuario, detalle de producto y recomendaciones.
-
-## Tablero de trabajo
-
-Tablero de trabajo del proyecto: pendiente de reemplazar por URL real de Trello o GitHub Projects.
-
-## Sprint 3
-
-En esta etapa el proyecto deja de ser una maqueta HTML estática y pasa a una aplicación Node.js con Express y EJS.
-
-### Funcionalidades y estructura implementada
-
-- Servidor Express.
-- Motor de templates EJS.
-- Vistas renderizadas con `res.render()`.
-- Carpeta `views/partials` con componentes reutilizables:
-  - `head.ejs`
-  - `header.ejs`
-  - `footer.ejs`
-  - `productCard.ejs`
-- Vistas organizadas en carpetas:
-  - `src/views/products/`
-  - `src/views/users/`
-- Home.
+- Lectura dinámica de productos desde `src/data/products.json`.
+- Archivo `src/data/users.json` con usuarios mockeados.
 - Listado de productos.
 - Detalle de producto.
-- Carrito de compras.
-- Registro.
-- Login.
-- Creación de producto.
-- Edición de producto.
+- Creación de productos.
+- Edición de productos.
+- Eliminación de productos.
+- Uso de rutas HTTP `GET`, `POST`, `PUT` y `DELETE` mediante `method-override`.
 
 ## Instalación y ejecución
 
@@ -59,7 +28,7 @@ npm install
 npm start
 ```
 
-Luego abrir en el navegador:
+Luego abrir:
 
 ```txt
 http://localhost:3000
@@ -70,10 +39,35 @@ http://localhost:3000
 ```txt
 /                       Home
 /products               Listado de productos
-/products/detail/1      Detalle de producto
-/cart                   Carrito de compras
+/products/create        Formulario de creación
+/products/:id           Detalle de producto
+/products/:id/edit      Formulario de edición
+/cart                   Carrito
 /users/register         Registro
 /users/login            Login
-/products/create        Crear producto
-/products/edit/1        Editar producto
 ```
+
+## Estructura del proyecto
+
+```txt
+DPFS_sebastian_fuentes/
+├── package.json
+├── README.md
+├── retro.md
+├── public/
+│   └── css/
+└── src/
+    ├── app.js
+    ├── controllers/
+    ├── data/
+    │   ├── products.json
+    │   └── users.json
+    ├── models/
+    │   └── productModel.js
+    ├── routes/
+    └── views/
+```
+
+## Tablero de trabajo
+
+Pendiente de incorporar enlace al tablero utilizado para el seguimiento del sprint.

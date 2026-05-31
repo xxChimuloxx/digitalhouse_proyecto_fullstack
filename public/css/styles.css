@@ -516,3 +516,18 @@ img {
     flex-direction: column;
   }
 }
+
+
+/* Sprint 4 - CRUD JSON */
+.inline-form {
+  display: inline-block;
+}
+
+.btn-danger {
+  background: #c0392b;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  opacity: 0.86;
+}

@@ -6,7 +6,7 @@
 
   <main class="section">
     <div class="container detail-layout">
-      <div class="detail-img">Imagen del producto</div>
+      <div class="detail-img"><%= product.image %></div>
       <section class="panel">
         <p class="muted">Inicio / Productos / <%= product.category %></p>
         <h1><%= product.name %></h1>
@@ -15,14 +15,17 @@
 
         <ul class="features">
           <li>Categoría: <%= product.category %></li>
-          <li>Color: <%= product.color %></li>
+          <li>Colores: <%= product.colors && product.colors.length ? product.colors.join(', ') : 'Sin especificar' %></li>
           <li>Garantía oficial</li>
           <li>Entrega a domicilio o retiro en sucursal</li>
         </ul>
 
         <div class="detail-actions">
           <a class="btn btn-secondary" href="/cart">Agregar al carrito</a>
-          <a class="btn btn-outline" href="/products/edit/<%= product.id %>">Editar producto</a>
+          <a class="btn btn-outline" href="/products/<%= product.id %>/edit">Editar producto</a>
+          <form action="/products/<%= product.id %>?_method=DELETE" method="POST" class="inline-form">
+            <button class="btn btn-danger" type="submit">Eliminar producto</button>
+          </form>
         </div>
       </section>
     </div>

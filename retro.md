@@ -1,43 +1,62 @@
-# Retrospectiva - Sprint 1 y Sprint 2
+# Retrospectiva del proyecto
 
-## Retrospectiva del Sprint 1
-
-### Comenzar a hacer
-- Organizar desde el inicio las carpetas del proyecto para evitar desorden en futuras entregas.
-- Documentar decisiones de diseño, colores y tipografías dentro del repositorio.
-
-### Hacer más
-- Usar wireframes como guía antes de avanzar con código.
-- Revisar la consigna completa antes de definir los entregables.
-
-### Continuar haciendo
-- Mantener una temática clara y fácil de ampliar.
-- Trabajar con una estética coherente entre las distintas pantallas.
-
-### Hacer menos
-- Evitar agregar detalles visuales innecesarios en etapas tempranas.
-- No dedicar demasiado tiempo a funcionalidades que aún no fueron solicitadas.
-
-### Dejar de hacer
-- Dejar para el final tareas básicas como estructura de carpetas o documentación.
-
-## Retrospectiva del Sprint 2
+## Sprint 1
 
 ### Comenzar a hacer
-- Separar desde el principio las partes repetidas del sitio, como header, footer y navegación.
-- Planificar mejor la estructura futura pensando en Express y EJS.
+- Organizar desde el inicio las carpetas del proyecto.
+- Definir nombres claros para las páginas y recursos.
+- Documentar las decisiones principales en el README.
 
 ### Hacer más
-- Reutilizar componentes comunes para reducir código duplicado.
-- Probar la navegación entre páginas después de cada cambio importante.
+- Usar los wireframes como guía antes de escribir código.
+- Revisar que cada entregable pedido por la consigna esté cubierto.
 
 ### Continuar haciendo
-- Mantener la maqueta simple, clara y responsive.
-- Usar nombres de archivos y carpetas consistentes con la consigna.
+- Mantener una temática coherente para todo el sitio.
+- Trabajar con una estética simple, clara y fácil de navegar.
 
 ### Hacer menos
-- Repetir bloques HTML idénticos en cada página.
-- Ajustar estilos página por página cuando podrían resolverse con clases reutilizables.
+- Evitar agregar elementos visuales que no aporten al objetivo principal.
 
 ### Dejar de hacer
-- Trabajar cada vista como si fuera una página aislada sin pensar en el crecimiento del proyecto.
+- Postergar la documentación hasta el final.
+
+## Sprint 2
+
+### Comenzar a hacer
+- Separar mejor las partes repetidas del sitio para evitar duplicar código.
+- Revisar rutas y enlaces internos después de crear cada página.
+
+### Hacer más
+- Probar la navegación completa del sitio antes de subir cambios.
+- Mantener criterios visuales consistentes entre todas las pantallas.
+
+### Continuar haciendo
+- Usar una estructura clara de carpetas.
+- Priorizar diseño responsive y facilidad de uso.
+
+### Hacer menos
+- Repetir manualmente bloques como header, footer y tarjetas de productos.
+
+### Dejar de hacer
+- Dejar páginas aisladas sin conexión con el resto del sitio.
+
+## Sprint 3
+
+### Comenzar a hacer
+- Trabajar con datos externos en JSON para preparar el paso posterior hacia base de datos.
+- Implementar rutas HTTP diferenciadas para cada acción del CRUD.
+
+### Hacer más
+- Reutilizar controladores y modelos para ordenar la lógica del proyecto.
+- Probar creación, edición y eliminación de productos después de cada cambio.
+
+### Continuar haciendo
+- Mantener EJS y parciales para evitar duplicación de código.
+- Documentar rutas principales y pasos de ejecución.
+
+### Hacer menos
+- Dejar datos escritos directamente en los controladores o vistas.
+
+### Dejar de hacer
+- Simular formularios cuando ya se puede implementar una acción real.

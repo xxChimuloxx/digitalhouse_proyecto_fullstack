@@ -1,7 +1,9 @@
-const products = require('../data/products');
+const productModel = require('../models/productModel');
 
 const mainController = {
   home: (req, res) => {
+    const products = productModel.findAll();
+
     res.render('index', {
       title: 'PixelForge Store | Home',
       active: 'home',
@@ -9,7 +11,9 @@ const mainController = {
       categories: ['Videojuegos', 'PC y componentes', 'Audio', 'Periféricos']
     });
   },
+
   cart: (req, res) => {
+    const products = productModel.findAll();
     const cartProducts = products.slice(0, 3);
     const subtotal = cartProducts.reduce((acc, product) => acc + product.price, 0);
 
