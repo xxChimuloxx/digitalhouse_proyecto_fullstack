@@ -702,3 +702,27 @@ select[multiple] {
     align-items: stretch;
   }
 }
+
+/* Sprint 7 - validaciones */
+.form-error {
+  display: block;
+  margin-top: 6px;
+  color: #ff8a8a;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.alert-error {
+  background: rgba(255, 80, 80, 0.12);
+  border: 1px solid rgba(255, 120, 120, 0.45);
+  color: #ffd1d1;
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin: 14px 0;
+  font-weight: 700;
+}
+
+.input-error {
+  border-color: #ff7a7a !important;
+  box-shadow: 0 0 0 3px rgba(255, 122, 122, 0.12);
+}

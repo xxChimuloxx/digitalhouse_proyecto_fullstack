@@ -12,8 +12,12 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-  const allowed = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
-  cb(null, allowed.includes(file.mimetype));
+  const allowed = ['image/jpeg', 'image/png', 'image/gif'];
+  if (!allowed.includes(file.mimetype)) {
+    req.fileValidationError = 'La imagen debe ser JPG, JPEG, PNG o GIF.';
+    return cb(null, false);
+  }
+  cb(null, true);
 };
 
 module.exports = multer({ storage, fileFilter });

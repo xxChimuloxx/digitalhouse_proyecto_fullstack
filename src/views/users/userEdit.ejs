@@ -8,24 +8,32 @@
       <section class="form-card">
         <h1>Editar usuario</h1>
         <% if (error) { %><p class="form-error"><%= error %></p><% } %>
-        <form action="/users/<%= user.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+        <% if (Object.keys(errors || {}).length) { %>
+          <div class="alert-error">Revisá los campos marcados antes de actualizar el usuario.</div>
+        <% } %>
+        <form action="/users/<%= user.id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="validate-user-edit" novalidate>
           <label>Nombre
-            <input type="text" name="firstName" value="<%= user.firstName %>" required>
+            <input type="text" name="firstName" value="<%= oldData.firstName || user.firstName %>">
+            <% if (errors.firstName) { %><small class="form-error"><%= errors.firstName.msg %></small><% } %>
           </label>
           <label>Apellido
-            <input type="text" name="lastName" value="<%= user.lastName %>" required>
+            <input type="text" name="lastName" value="<%= oldData.lastName || user.lastName %>">
+            <% if (errors.lastName) { %><small class="form-error"><%= errors.lastName.msg %></small><% } %>
           </label>
           <label>Email
-            <input type="email" name="email" value="<%= user.email %>" required>
+            <input type="email" name="email" value="<%= oldData.email || user.email %>">
+            <% if (errors.email) { %><small class="form-error"><%= errors.email.msg %></small><% } %>
           </label>
           <label>Categoría
+            <% const selectedCategory = oldData.category || user.category; %>
             <select name="category">
-              <option value="customer" <%= user.category === 'customer' ? 'selected' : '' %>>customer</option>
-              <option value="admin" <%= user.category === 'admin' ? 'selected' : '' %>>admin</option>
+              <option value="customer" <%= selectedCategory === 'customer' ? 'selected' : '' %>>customer</option>
+              <option value="admin" <%= selectedCategory === 'admin' ? 'selected' : '' %>>admin</option>
             </select>
           </label>
           <label>Imagen de perfil
-            <input type="file" name="image" accept="image/*">
+            <input type="file" name="image" accept=".jpg,.jpeg,.png,.gif">
+            <% if (errors.image) { %><small class="form-error"><%= errors.image.msg %></small><% } %>
           </label>
           <button class="btn btn-secondary" type="submit">Actualizar usuario</button>
         </form>
@@ -33,5 +41,6 @@
     </div>
   </main>
   <%- include('../partials/footer') %>
+  <script src="/js/userValidation.js"></script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 const bcrypt = require('bcryptjs');
+const { validationResult } = require('express-validator');
 const { User } = require('../database/models');
 
 const safeUser = user => ({
@@ -16,27 +17,20 @@ const userController = {
       title: 'Registro',
       active: 'register',
       error: null,
+      errors: {},
       oldData: {}
     });
   },
 
   store: async (req, res) => {
-    const existingUser = await User.findOne({ where: { email: req.body.email } });
+    const result = validationResult(req);
 
-    if (existingUser) {
-      return res.render('users/register', {
+    if (!result.isEmpty()) {
+      return res.status(400).render('users/register', {
         title: 'Registro',
         active: 'register',
-        error: 'Ya existe un usuario registrado con ese email.',
-        oldData: req.body
-      });
-    }
-
-    if (req.body.password !== req.body.confirmPassword) {
-      return res.render('users/register', {
-        title: 'Registro',
-        active: 'register',
-        error: 'Las contraseñas no coinciden.',
+        error: null,
+        errors: result.mapped(),
         oldData: req.body
       });
     }
@@ -58,18 +52,34 @@ const userController = {
     res.render('users/login', {
       title: 'Login',
       active: 'login',
-      error: null
+      error: null,
+      errors: {},
+      oldData: {}
     });
   },
 
   processLogin: async (req, res) => {
-    const user = await User.findOne({ where: { email: req.body.email } });
+    const result = validationResult(req);
 
-    if (!user || !bcrypt.compareSync(req.body.password, user.password)) {
-      return res.render('users/login', {
+    if (!result.isEmpty()) {
+      return res.status(400).render('users/login', {
         title: 'Login',
         active: 'login',
-        error: 'Email o contraseña incorrectos.'
+        error: null,
+        errors: result.mapped(),
+        oldData: req.body
+      });
+    }
+
+    const user = await User.findOne({ where: { email: req.body.email } });
+
+    if (!bcrypt.compareSync(req.body.password, user.password)) {
+      return res.status(400).render('users/login', {
+        title: 'Login',
+        active: 'login',
+        error: 'La contraseña no coincide con la registrada.',
+        errors: {},
+        oldData: req.body
       });
     }
 
@@ -120,7 +130,9 @@ const userController = {
       title: `Editar ${user.firstName}`,
       active: 'users',
       user,
-      error: null
+      error: null,
+      errors: {},
+      oldData: {}
     });
   },
 
@@ -128,6 +140,18 @@ const userController = {
     const user = await User.findByPk(req.params.id);
     if (!user) {
       return res.status(404).render('notFound', { title: 'Usuario no encontrado', active: 'users' });
+    }
+
+    const result = validationResult(req);
+    if (!result.isEmpty()) {
+      return res.status(400).render('users/userEdit', {
+        title: `Editar ${user.firstName}`,
+        active: 'users',
+        user,
+        error: null,
+        errors: result.mapped(),
+        oldData: req.body
+      });
     }
 
     await user.update({

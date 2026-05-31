@@ -1,4 +1,5 @@
 const { Op } = require('sequelize');
+const { validationResult } = require('express-validator');
 const { Product, Category, Brand, Color } = require('../database/models');
 
 const includes = [
@@ -16,6 +17,8 @@ const getFormData = async () => {
 
   return { categories, brands, colors };
 };
+
+const normalizeColors = value => Array.isArray(value) ? value : (value ? [value] : []);
 
 const productController = {
   list: async (req, res) => {
@@ -61,11 +64,29 @@ const productController = {
       title: 'Crear producto',
       active: 'admin',
       product: null,
+      errors: {},
+      oldData: {},
+      selectedColors: [],
       ...formData
     });
   },
 
   store: async (req, res) => {
+    const errors = validationResult(req);
+    const formData = await getFormData();
+
+    if (!errors.isEmpty()) {
+      return res.status(400).render('products/productCreate', {
+        title: 'Crear producto',
+        active: 'admin',
+        product: null,
+        errors: errors.mapped(),
+        oldData: req.body,
+        selectedColors: normalizeColors(req.body.colors).map(Number),
+        ...formData
+      });
+    }
+
     const product = await Product.create({
       name: req.body.name,
       description: req.body.description,
@@ -76,7 +97,7 @@ const productController = {
       featured: req.body.featured === 'on'
     });
 
-    const colorIds = Array.isArray(req.body.colors) ? req.body.colors : (req.body.colors ? [req.body.colors] : []);
+    const colorIds = normalizeColors(req.body.colors);
     if (colorIds.length) await product.setColors(colorIds);
 
     res.redirect(`/products/${product.id}`);
@@ -94,16 +115,33 @@ const productController = {
       title: `Editar ${product.name}`,
       active: 'admin',
       product,
+      errors: {},
+      oldData: {},
       selectedColors: product.colors.map(color => color.id),
       ...formData
     });
   },
 
   update: async (req, res) => {
-    const product = await Product.findByPk(req.params.id);
+    const product = await Product.findByPk(req.params.id, { include: [{ model: Color, as: 'colors' }] });
 
     if (!product) {
       return res.status(404).render('notFound', { title: 'Producto no encontrado', active: 'products' });
+    }
+
+    const errors = validationResult(req);
+    const formData = await getFormData();
+
+    if (!errors.isEmpty()) {
+      return res.status(400).render('products/productEdit', {
+        title: `Editar ${product.name}`,
+        active: 'admin',
+        product,
+        errors: errors.mapped(),
+        oldData: req.body,
+        selectedColors: normalizeColors(req.body.colors).map(Number),
+        ...formData
+      });
     }
 
     await product.update({
@@ -116,7 +154,7 @@ const productController = {
       featured: req.body.featured === 'on'
     });
 
-    const colorIds = Array.isArray(req.body.colors) ? req.body.colors : (req.body.colors ? [req.body.colors] : []);
+    const colorIds = normalizeColors(req.body.colors);
     await product.setColors(colorIds);
 
     res.redirect(`/products/${product.id}`);

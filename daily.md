@@ -1,5 +1,13 @@
-# Daily / Weekly - Sprint 6
+# Daily / Weekly - Sprint 7
 
-Durante este sprint el foco principal estuvo puesto en migrar la persistencia de archivos JSON hacia una base de datos relacional. La mayor dificultad fue adaptar los controladores existentes para que trabajen con Sequelize y respeten las relaciones definidas en el DER.
+Durante este sprint el foco estuvo puesto en reforzar la calidad de los datos ingresados por el usuario. Se implementaron validaciones de back-end con Express Validator y validaciones de front-end con JavaScript para evitar envíos innecesarios al servidor.
 
-Se priorizó primero el diseño de la base, luego los scripts SQL y finalmente la integración con la aplicación. Esta organización permitió avanzar de forma más controlada y reducir errores al momento de implementar el CRUD.
+Las principales tareas realizadas fueron:
+
+- Validaciones del formulario de registro.
+- Validaciones del formulario de login.
+- Validaciones de creación y edición de productos.
+- Mensajes visuales de error en las vistas EJS.
+- Archivos JavaScript específicos para validaciones del lado del cliente.
+
+El mayor punto de atención fue mantener coherencia entre lo que valida el front-end y lo que valida el back-end, recordando que la validación del servidor siempre debe ser la protección principal.

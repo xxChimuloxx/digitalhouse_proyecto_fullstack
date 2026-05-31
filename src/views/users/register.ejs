@@ -9,28 +9,35 @@
       <h1>Crear cuenta</h1>
       <p>Registrate para comprar más rápido y acceder a tu perfil.</p>
 
-      <% if (error) { %>
-        <div class="alert-error"><%= error %></div>
+      <% if (error) { %><div class="alert-error"><%= error %></div><% } %>
+      <% if (Object.keys(errors || {}).length) { %>
+        <div class="alert-error">Revisá los campos marcados antes de continuar.</div>
       <% } %>
 
-      <form action="/users/register" method="POST" enctype="multipart/form-data" class="form-grid">
+      <form action="/users/register" method="POST" enctype="multipart/form-data" class="form-grid validate-register" novalidate>
         <label>Nombre
-          <input type="text" name="firstName" value="<%= oldData.firstName || '' %>" placeholder="Sebastián" required>
+          <input type="text" name="firstName" value="<%= oldData.firstName || '' %>" placeholder="Sebastián">
+          <% if (errors.firstName) { %><small class="form-error"><%= errors.firstName.msg %></small><% } %>
         </label>
         <label>Apellido
-          <input type="text" name="lastName" value="<%= oldData.lastName || '' %>" placeholder="Fuentes" required>
+          <input type="text" name="lastName" value="<%= oldData.lastName || '' %>" placeholder="Fuentes">
+          <% if (errors.lastName) { %><small class="form-error"><%= errors.lastName.msg %></small><% } %>
         </label>
         <label>Email
-          <input type="email" name="email" value="<%= oldData.email || '' %>" placeholder="usuario@email.com" required>
+          <input type="email" name="email" value="<%= oldData.email || '' %>" placeholder="usuario@email.com">
+          <% if (errors.email) { %><small class="form-error"><%= errors.email.msg %></small><% } %>
         </label>
         <label>Contraseña
-          <input type="password" name="password" placeholder="Mínimo 6 caracteres" required>
+          <input type="password" name="password" placeholder="Mínimo 8 caracteres">
+          <% if (errors.password) { %><small class="form-error"><%= errors.password.msg %></small><% } %>
         </label>
         <label>Confirmar contraseña
-          <input type="password" name="confirmPassword" placeholder="Repetí tu contraseña" required>
+          <input type="password" name="confirmPassword" placeholder="Repetí tu contraseña">
+          <% if (errors.confirmPassword) { %><small class="form-error"><%= errors.confirmPassword.msg %></small><% } %>
         </label>
         <label>Imagen de perfil
-          <input type="file" name="image" accept="image/*">
+          <input type="file" name="image" accept=".jpg,.jpeg,.png,.gif">
+          <% if (errors.image) { %><small class="form-error"><%= errors.image.msg %></small><% } %>
         </label>
         <button class="btn-primary" type="submit">Crear cuenta</button>
       </form>
@@ -40,5 +47,6 @@
   </main>
 
   <%- include('../partials/footer') %>
+  <script src="/js/userValidation.js"></script>
 </body>
 </html>

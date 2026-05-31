@@ -1,82 +1,104 @@
-# PixelForge Store - Sprint 6
+# PixelForge Store - Sprint 7
 
-PixelForge Store es un e-commerce de productos gamer y accesorios tecnológicos desarrollado como desafío profesional Full Stack.
+Proyecto e-commerce desarrollado para el Desafío Profesional Full Stack.
 
-## Sprint 6
+En este sprint se agregan validaciones de back-end y front-end sobre la base del Sprint 6, que ya trabajaba con Node.js, Express, EJS, Sequelize y MySQL.
 
-En esta iteración se deja atrás la persistencia basada en archivos JSON y se incorpora una base de datos relacional con MySQL y Sequelize.
+## Funcionalidades principales
 
-## Entregables incluidos
+- Home dinámica.
+- Listado de productos.
+- Detalle de producto.
+- Carrito visual.
+- CRUD de productos con Sequelize.
+- CRUD básico de usuarios con Sequelize.
+- Registro de usuarios con imagen de perfil.
+- Login, logout, sesión y cookie de recordarme.
+- Rutas protegidas para usuarios logueados.
+- Rutas de huéspedes para login y registro.
+- Validaciones de back-end con Express Validator.
+- Validaciones de front-end con JavaScript custom.
 
-- Diagrama de entidad-relación en PDF.
-- Script `structure.sql` para crear la base de datos completa.
-- Script `data.sql` para poblar la base con datos iniciales.
-- Carpeta `database` con configuración y modelos de Sequelize.
-- CRUD de productos usando Sequelize.
-- CRUD básico de usuarios usando Sequelize.
-- Buscador de productos.
-- Relaciones entre productos, categorías, marcas y colores.
+## Validaciones implementadas
 
-## Estructura principal
+### Registro de usuarios
+
+Back-end y front-end validan:
+
+- Nombre obligatorio y mínimo 2 caracteres.
+- Apellido obligatorio y mínimo 2 caracteres.
+- Email obligatorio y formato válido.
+- Email no repetido en base de datos.
+- Contraseña obligatoria y mínimo 8 caracteres.
+- Confirmación de contraseña coincidente.
+- Imagen válida: JPG, JPEG, PNG o GIF.
+
+### Login de usuarios
+
+Back-end y front-end validan:
+
+- Email obligatorio.
+- Email con formato válido.
+- Email existente en base de datos.
+- Contraseña obligatoria.
+- Contraseña coincidente con la almacenada.
+
+### Creación y edición de productos
+
+Back-end y front-end validan:
+
+- Nombre obligatorio y mínimo 5 caracteres.
+- Descripción obligatoria y mínimo 20 caracteres.
+- Imagen válida: JPG, JPEG, PNG o GIF.
+- Categoría existente en base.
+- Marca existente en base.
+- Colores existentes en base.
+- Precio obligatorio y mayor a cero.
+
+## Estructura relevante
 
 ```txt
-DPFS_sebastian_fuentes_sprint6/
-├── database/
-│   ├── config/
-│   ├── diagram/
-│   ├── models/
-│   └── scripts/
-├── public/
-├── src/
-│   ├── controllers/
-│   ├── database/models/
-│   ├── middlewares/
-│   ├── routes/
-│   └── views/
-├── .env.example
-├── package.json
-├── README.md
-└── retro.md
+src/
+├── controllers/
+├── database/models/
+├── middlewares/
+├── routes/
+├── validations/
+│   ├── productValidations.js
+│   └── userValidations.js
+└── views/
+
+public/
+├── css/styles.css
+└── js/
+    ├── productValidation.js
+    └── userValidation.js
 ```
 
-## Configuración de base de datos
-
-1. Crear la base ejecutando:
-
-```sql
-source database/scripts/structure.sql;
-```
-
-2. Cargar datos iniciales:
-
-```sql
-source database/scripts/data.sql;
-```
-
-También se pueden ejecutar ambos archivos desde phpMyAdmin o MySQL Workbench.
-
-## Variables de entorno
-
-Copiar `.env.example` como `.env` y ajustar los datos según el entorno local:
-
-```env
-DB_USERNAME=root
-DB_PASSWORD=
-DB_DATABASE=pixelforge_store
-DB_HOST=127.0.0.1
-DB_DIALECT=mysql
-PORT=3000
-SESSION_SECRET=pixelforge-secret-key
-```
-
-## Instalación y ejecución
+## Instalación
 
 ```bash
 npm install
+```
+
+## Base de datos
+
+Primero ejecutar los scripts SQL en MySQL:
+
+```txt
+database/scripts/structure.sql
+database/scripts/data.sql
+```
+
+Luego copiar `.env.example` como `.env` y ajustar usuario, contraseña y nombre de la base si fuera necesario.
+
+## Ejecución
+
+```bash
 npm start
 ```
 
-Luego abrir:
+Abrir en el navegador:
 
 ```txt
 http://localhost:3000
@@ -85,37 +107,10 @@ http://localhost:3000
 ## Usuarios de prueba
 
 ```txt
-Email: lucia.gomez@example.com
-Password: 123456
-
-Email: admin@pixelforge.com
-Password: admin123
-```
-
-## Rutas principales
-
-```txt
-GET     /products
-GET     /products?search=teclado
-GET     /products/create
-POST    /products
-GET     /products/:id
-GET     /products/:id/edit
-PUT     /products/:id
-DELETE  /products/:id
-
-GET     /users
-GET     /users/:id
-GET     /users/:id/edit
-PUT     /users/:id
-GET     /users/register
-POST    /users/register
-GET     /users/login
-POST    /users/login
-GET     /users/profile
-POST    /users/logout
+lucia.gomez@example.com / 123456
+admin@pixelforge.com / admin123
 ```
 
 ## Tablero de trabajo
 
-El tablero de trabajo se mantiene actualizado para organizar las tareas del sprint, incluyendo diseño de base de datos, scripts SQL, configuración Sequelize, modelos, relaciones y actualización de CRUDs.
+Tablero sugerido: GitHub Projects o Trello, con columnas Backlog, To Do, In Progress, Testing y Done.

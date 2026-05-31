@@ -9,29 +9,41 @@
       <section class="form-card">
         <h1>Editar producto</h1>
         <p class="muted">Formulario funcional para actualizar productos en MySQL usando Sequelize.</p>
-        <form action="/products/<%= product.id %>?_method=PUT" method="POST">
+        <% if (Object.keys(errors || {}).length) { %>
+          <div class="alert-error">Revisá los campos marcados antes de actualizar el producto.</div>
+        <% } %>
+        <form action="/products/<%= product.id %>?_method=PUT" method="POST" class="validate-product" novalidate>
           <label>Nombre del producto
-            <input type="text" name="name" value="<%= product.name %>" required>
+            <input type="text" name="name" value="<%= oldData.name || product.name %>">
+            <% if (errors.name) { %><small class="form-error"><%= errors.name.msg %></small><% } %>
           </label>
           <label>Descripción
-            <textarea name="description" rows="4" required><%= product.description %></textarea>
+            <textarea name="description" rows="4"><%= oldData.description || product.description %></textarea>
+            <% if (errors.description) { %><small class="form-error"><%= errors.description.msg %></small><% } %>
           </label>
           <label>Imagen
-            <input type="text" name="image" value="<%= product.image %>">
+            <input type="text" name="image" value="<%= oldData.image || product.image %>">
+            <% if (errors.image) { %><small class="form-error"><%= errors.image.msg %></small><% } %>
           </label>
           <label>Categoría
-            <select name="category_id" required>
+            <select name="category_id">
+              <option value="">Seleccionar categoría</option>
               <% categories.forEach(category => { %>
-                <option value="<%= category.id %>" <%= Number(product.category_id) === Number(category.id) ? 'selected' : '' %>><%= category.name %></option>
+                <% const selectedCategory = oldData.category_id ? Number(oldData.category_id) : Number(product.category_id); %>
+                <option value="<%= category.id %>" <%= Number(selectedCategory) === Number(category.id) ? 'selected' : '' %>><%= category.name %></option>
               <% }) %>
             </select>
+            <% if (errors.category_id) { %><small class="form-error"><%= errors.category_id.msg %></small><% } %>
           </label>
           <label>Marca
-            <select name="brand_id" required>
+            <select name="brand_id">
+              <option value="">Seleccionar marca</option>
               <% brands.forEach(brand => { %>
-                <option value="<%= brand.id %>" <%= Number(product.brand_id) === Number(brand.id) ? 'selected' : '' %>><%= brand.name %></option>
+                <% const selectedBrand = oldData.brand_id ? Number(oldData.brand_id) : Number(product.brand_id); %>
+                <option value="<%= brand.id %>" <%= Number(selectedBrand) === Number(brand.id) ? 'selected' : '' %>><%= brand.name %></option>
               <% }) %>
             </select>
+            <% if (errors.brand_id) { %><small class="form-error"><%= errors.brand_id.msg %></small><% } %>
           </label>
           <label>Colores
             <select name="colors" multiple>
@@ -39,12 +51,14 @@
                 <option value="<%= color.id %>" <%= selectedColors.includes(color.id) ? 'selected' : '' %>><%= color.name %></option>
               <% }) %>
             </select>
+            <% if (errors.colors) { %><small class="form-error"><%= errors.colors.msg %></small><% } %>
           </label>
           <label>Precio
-            <input type="number" name="price" value="<%= Number(product.price) %>" required>
+            <input type="number" name="price" value="<%= oldData.price || Number(product.price) %>">
+            <% if (errors.price) { %><small class="form-error"><%= errors.price.msg %></small><% } %>
           </label>
           <label class="checkbox-line">
-            <input type="checkbox" name="featured" <%= product.featured ? 'checked' : '' %>>
+            <input type="checkbox" name="featured" <%= oldData.featured || product.featured ? 'checked' : '' %>>
             Mostrar como producto destacado
           </label>
           <button class="btn btn-secondary" type="submit">Actualizar producto</button>
@@ -54,5 +68,6 @@
   </main>
 
   <%- include('../partials/footer') %>
+  <script src="/js/productValidation.js"></script>
 </body>
 </html>

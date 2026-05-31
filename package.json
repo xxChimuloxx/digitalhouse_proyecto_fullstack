@@ -1,7 +1,7 @@
 {
-  "name": "dpfs_sebastian_fuentes_sprint6",
+  "name": "dpfs_sebastian_fuentes_sprint7",
   "version": "1.0.0",
-  "description": "PixelForge Store - Sprint 6 - Base de datos SQL y Sequelize",
+  "description": "PixelForge Store - Sprint 7 - Validaciones back-end y front-end",
   "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js",
@@ -27,7 +27,8 @@
     "method-override": "^3.0.0",
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.11.0",
-    "sequelize": "^6.37.3"
+    "sequelize": "^6.37.3",
+    "express-validator": "^7.2.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.0"

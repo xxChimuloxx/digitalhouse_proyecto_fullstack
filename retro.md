@@ -1,29 +1,29 @@
-# Retrospectiva - Sprint 6
+# Retrospectiva - Sprint 7
 
 ## Comenzar a hacer
 
-- Documentar con mayor precisión los cambios estructurales importantes, especialmente cuando se reemplaza una fuente de datos por otra.
-- Probar las rutas principales después de cada cambio de modelo o relación.
-- Mantener una copia clara de los scripts SQL para facilitar la instalación del proyecto en otro equipo.
+- Validar cada formulario desde el back-end antes de guardar información en la base de datos.
+- Agregar validaciones de front-end para mejorar la experiencia del usuario.
+- Mantener los mensajes de error cerca de cada campo para que sean fáciles de entender.
 
 ## Hacer más
 
-- Separar responsabilidades entre rutas, controladores, modelos y vistas.
-- Utilizar nombres consistentes en inglés para tablas, campos y modelos, facilitando el trabajo con Sequelize.
-- Revisar las relaciones antes de programar los controladores para evitar errores posteriores.
+- Reutilizar middlewares y archivos de validación para evitar repetir lógica en los controladores.
+- Probar casos incorrectos, no solo el camino feliz.
+- Revisar que los datos enviados desde los formularios coincidan con las restricciones de la base.
 
 ## Continuar haciendo
 
-- Mantener una estructura ordenada de carpetas.
-- Trabajar por sprint, dejando entregables claros y verificables.
-- Reutilizar vistas parciales para evitar repetición de código.
+- Mantener la estructura separada por rutas, controladores, vistas, modelos y middlewares.
+- Utilizar Sequelize como capa de acceso a datos.
+- Documentar los cambios principales del sprint en el README.
 
 ## Hacer menos
 
-- Evitar resolver cambios grandes directamente sobre las vistas sin revisar antes el impacto en rutas y controladores.
-- Evitar depender de datos hardcodeados cuando ya existe una fuente de datos más robusta.
+- Evitar cargar validaciones directamente dentro de las vistas.
+- Evitar confiar únicamente en los atributos HTML como `required`, porque pueden ser deshabilitados desde el navegador.
 
 ## Dejar de hacer
 
-- Dejar de usar JSON como fuente principal de persistencia para productos y usuarios.
-- Dejar de duplicar lógica de acceso a datos en distintos controladores.
+- Dejar de guardar datos sin verificar formato, longitud mínima o existencia en base.
+- Dejar de mostrar errores genéricos cuando se puede informar claramente qué campo debe corregirse.
