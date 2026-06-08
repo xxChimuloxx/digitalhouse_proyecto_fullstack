@@ -5,6 +5,7 @@ const path = require('path');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 const mainRoutes = require('./routes/mainRoutes');
 const productRoutes = require('./routes/productRoutes');
@@ -20,6 +21,7 @@ const PORT = process.env.PORT || 3000;
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+app.use(cors());
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
@@ -33,7 +35,9 @@ app.use(userLoggedMiddleware);
 
 app.use('/api/products', productApiRoutes);
 app.use('/api/users', userApiRoutes);
-app.use('/dashboard', express.static(path.join(__dirname, '../public/dashboard')));
+app.get('/dashboard', (req, res) => {
+  res.redirect('http://localhost:5173');
+});
 
 app.use('/', mainRoutes);
 app.use('/products', productRoutes);
